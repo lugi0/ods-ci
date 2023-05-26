@@ -1,0 +1,124 @@
+Name:           nvidia-operator-validator
+Selector:       app=nvidia-operator-validator,app.kubernetes.io/part-of=gpu-operator
+Node-Selector:  nvidia.com/gpu.deploy.operator-validator=true
+Labels:         app=nvidia-operator-validator
+                app.kubernetes.io/part-of=gpu-operator
+Annotations:    deprecated.daemonset.template.generation: 1
+                nvidia.com/last-applied-hash: 1f76eec59d76e067
+Desired Number of Nodes Scheduled: 1
+Current Number of Nodes Scheduled: 1
+Number of Nodes Scheduled with Up-to-date Pods: 1
+Number of Nodes Scheduled with Available Pods: 1
+Number of Nodes Misscheduled: 0
+Pods Status:  1 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app=nvidia-operator-validator
+                    app.kubernetes.io/part-of=gpu-operator
+  Service Account:  nvidia-operator-validator
+  Init Containers:
+   driver-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    Environment:
+      WITH_WAIT:  true
+      COMPONENT:  driver
+    Mounts:
+      /host from host-root (ro)
+      /host-dev-char from host-dev-char (rw)
+      /run/nvidia/driver from driver-install-path (rw)
+      /run/nvidia/validations from run-nvidia-validations (rw)
+   toolkit-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    Environment:
+      WITH_WAIT:  false
+      COMPONENT:  toolkit
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+   cuda-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    Environment:
+      WITH_WAIT:                    false
+      COMPONENT:                    cuda
+      NODE_NAME:                     (v1:spec.nodeName)
+      OPERATOR_NAMESPACE:            (v1:metadata.namespace)
+      VALIDATOR_IMAGE:              nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+      VALIDATOR_IMAGE_PULL_POLICY:  
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+   plugin-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    Environment:
+      COMPONENT:                    plugin
+      WITH_WAIT:                    false
+      WITH_WORKLOAD:                true
+      MIG_STRATEGY:                 single
+      NODE_NAME:                     (v1:spec.nodeName)
+      OPERATOR_NAMESPACE:            (v1:metadata.namespace)
+      VALIDATOR_IMAGE:              nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+      VALIDATOR_IMAGE_PULL_POLICY:  
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+  Containers:
+   nvidia-operator-validator:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      echo all validations are successful; sleep infinity
+    Environment:
+      WITH_WORKLOAD:  true
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+  Volumes:
+   run-nvidia-validations:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/validations
+    HostPathType:  DirectoryOrCreate
+   driver-install-path:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/driver
+    HostPathType:  
+   host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+   host-dev-char:
+    Type:               HostPath (bare host directory volume)
+    Path:               /dev/char
+    HostPathType:       
+  Priority Class Name:  system-node-critical
+Events:
+  Type    Reason            Age   From                  Message
+  ----    ------            ----  ----                  -------
+  Normal  SuccessfulDelete  25m   daemonset-controller  Deleted pod: nvidia-operator-validator-pc7k9
+  Normal  SuccessfulCreate  24m   daemonset-controller  Created pod: nvidia-operator-validator-knv7n

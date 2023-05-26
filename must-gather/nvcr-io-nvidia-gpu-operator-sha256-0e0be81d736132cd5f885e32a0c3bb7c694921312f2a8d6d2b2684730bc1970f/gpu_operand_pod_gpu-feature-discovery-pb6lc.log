@@ -1,0 +1,93 @@
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Starting OS watcher.
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Loading configuration.
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] Running with config:
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] {
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   "version": "v1",
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   "flags": {
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "migStrategy": "single",
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "failOnInitError": true,
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "gdsEnabled": null,
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "mofedEnabled": null,
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "gfd": {
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]       "oneshot": false,
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]       "noTimestamp": false,
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]       "sleepInterval": "1m0s",
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]       "outputFile": "/etc/kubernetes/node-feature-discovery/features.d/gfd",
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]       "machineTypeFile": "/sys/class/dmi/id/product_name"
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     }
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   },
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   "resources": {
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "gpus": null
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   },
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   "sharing": {
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]     "timeSlicing": {}
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery]   }
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] }
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Detected NVML platform: found NVML library
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Detected non-Tegra platform: /sys/devices/soc0/family file not found
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Using NVML manager
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Start running
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:15:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:16:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:16:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:17:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:17:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:18:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:18:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:19:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:19:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:20:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:20:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:21:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:21:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:22:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:22:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:23:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:23:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:24:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:24:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:25:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:25:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:26:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:26:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:27:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:27:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:28:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:28:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:29:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:29:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:30:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:30:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:31:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:31:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:32:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:32:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:33:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:33:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:34:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:34:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:35:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:35:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:36:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:36:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:37:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:37:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:38:42 Writing labels to output file
+[pod/gpu-feature-discovery-pb6lc/gpu-feature-discovery] 2023/03/02 16:38:42 Sleeping for 60000000000
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/gpu-feature-discovery-pb6lc/toolkit-validation] waiting for nvidia container stack to be setup

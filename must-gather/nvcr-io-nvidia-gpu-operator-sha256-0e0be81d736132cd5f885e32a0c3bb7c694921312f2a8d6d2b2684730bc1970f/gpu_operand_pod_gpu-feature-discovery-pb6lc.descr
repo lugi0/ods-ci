@@ -1,0 +1,127 @@
+Name:                 gpu-feature-discovery-pb6lc
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-gpu-feature-discovery
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:23 +0000
+Labels:               app=gpu-feature-discovery
+                      app.kubernetes.io/part-of=nvidia-gpu
+                      controller-revision-hash=89cf89dbd
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.16"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.16"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: nvidia-gpu-feature-discovery
+Status:               Running
+IP:                   10.131.2.16
+IPs:
+  IP:           10.131.2.16
+Controlled By:  DaemonSet/gpu-feature-discovery
+Init Containers:
+  toolkit-validation:
+    Container ID:  cri-o://70e6d186aed8b4ad23ee3bf21b1e66fb43e7639708b55ff7a89637e05c5e4583
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:26 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:42 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-d4ks4 (ro)
+Containers:
+  gpu-feature-discovery:
+    Container ID:   cri-o://462bd83e2786525cedf324a2f00dfaf4b08a97d4e033af279f806df617952fce
+    Image:          nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d
+    Image ID:       nvcr.io/nvidia/gpu-feature-discovery@sha256:408a0886e19ecc872d56c070e08d6dfc67c7e32fd2e63f2e4776ec2f3b9700e4
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:42 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      GFD_SLEEP_INTERVAL:          60s
+      GFD_FAIL_ON_INIT_ERROR:      true
+      MIG_STRATEGY:                single
+      NVIDIA_MIG_MONITOR_DEVICES:  all
+    Mounts:
+      /etc/kubernetes/node-feature-discovery/features.d from output-dir (rw)
+      /sys/class/dmi/id/product_name from dmi-product-name (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-d4ks4 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  output-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/node-feature-discovery/features.d
+    HostPathType:  
+  dmi-product-name:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/class/dmi/id/product_name
+    HostPathType:  
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  Directory
+  kube-api-access-d4ks4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.gpu-feature-discovery=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       24m   default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/gpu-feature-discovery-pb6lc to ip-10-0-193-255.us-east-2.compute.internal
+  Normal  AddedInterface  24m   multus             Add eth0 [10.131.2.16/23] from openshift-sdn
+  Normal  Pulled          24m   kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created         24m   kubelet            Created container toolkit-validation
+  Normal  Started         24m   kubelet            Started container toolkit-validation
+  Normal  Pulled          23m   kubelet            Container image "nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d" already present on machine
+  Normal  Created         23m   kubelet            Created container gpu-feature-discovery
+  Normal  Started         23m   kubelet            Started container gpu-feature-discovery

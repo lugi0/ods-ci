@@ -1,0 +1,152 @@
+Name:                 nvidia-container-toolkit-daemonset-fxdlr
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-container-toolkit
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:23 +0000
+Labels:               app=nvidia-container-toolkit-daemonset
+                      controller-revision-hash=5c6fccb484
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.18"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.18"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: privileged
+Status:               Running
+IP:                   10.131.2.18
+IPs:
+  IP:           10.131.2.18
+Controlled By:  DaemonSet/nvidia-container-toolkit-daemonset
+Init Containers:
+  driver-validation:
+    Container ID:  cri-o://bb00c9a876f6bb1b94cad55436b3c7d67ae42a3d6b40597214f2198df67e4143
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:27 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:12 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      WITH_WAIT:  true
+      COMPONENT:  driver
+    Mounts:
+      /host from host-root (ro)
+      /host-dev-char from host-dev-char (rw)
+      /run/nvidia/driver from driver-install-path (rw)
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4t6h7 (ro)
+Containers:
+  nvidia-container-toolkit-ctr:
+    Container ID:  cri-o://0df24b7c611598ce27a0c6f021fc9bfa241567da2b744879a9c9e867e45c32f9
+    Image:         nvcr.io/nvidia/k8s/container-toolkit@sha256:efb88937f73434994d1bbadc87b492a1df047aa9f8d6e9f5ec3b09536e6e7691
+    Image ID:      nvcr.io/nvidia/k8s/container-toolkit@sha256:8d4d704ba750acc1011e00516df376b11a950360dba34d3a97a04c34086eefb0
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      bash
+      -c
+    Args:
+      [[ -f /run/nvidia/validations/host-driver-ready ]] && driver_root=/ || driver_root=/run/nvidia/driver; export NVIDIA_DRIVER_ROOT=$driver_root; sleep 5; exec nvidia-toolkit /usr/local/nvidia
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:13 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      RUNTIME_ARGS:  
+      RUNTIME:       crio
+    Mounts:
+      /host from host-root (ro)
+      /run/nvidia from nvidia-run-path (rw)
+      /usr/local/nvidia from toolkit-install-dir (rw)
+      /usr/share/containers/oci/hooks.d from crio-hooks (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4t6h7 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  nvidia-run-path:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  DirectoryOrCreate
+  run-nvidia-validations:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/validations
+    HostPathType:  DirectoryOrCreate
+  driver-install-path:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/driver
+    HostPathType:  
+  host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+  toolkit-install-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/local/nvidia
+    HostPathType:  
+  crio-hooks:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/containers/oci/hooks.d
+    HostPathType:  
+  host-dev-char:
+    Type:          HostPath (bare host directory volume)
+    Path:          /dev/char
+    HostPathType:  
+  kube-api-access-4t6h7:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.container-toolkit=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       24m   default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/nvidia-container-toolkit-daemonset-fxdlr to ip-10-0-193-255.us-east-2.compute.internal
+  Normal  AddedInterface  24m   multus             Add eth0 [10.131.2.18/23] from openshift-sdn
+  Normal  Pulled          24m   kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created         24m   kubelet            Created container driver-validation
+  Normal  Started         24m   kubelet            Started container driver-validation
+  Normal  Pulled          23m   kubelet            Container image "nvcr.io/nvidia/k8s/container-toolkit@sha256:efb88937f73434994d1bbadc87b492a1df047aa9f8d6e9f5ec3b09536e6e7691" already present on machine
+  Normal  Created         23m   kubelet            Created container nvidia-container-toolkit-ctr
+  Normal  Started         23m   kubelet            Started container nvidia-container-toolkit-ctr

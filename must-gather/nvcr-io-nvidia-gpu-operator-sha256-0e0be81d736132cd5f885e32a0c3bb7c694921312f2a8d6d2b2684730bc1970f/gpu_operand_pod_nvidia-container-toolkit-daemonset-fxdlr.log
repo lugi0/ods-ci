@@ -1,0 +1,273 @@
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:14:27Z" level=info msg="Driver is not pre-installed on the host. Checking driver container status."
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] stat: cannot statx '/run/nvidia/validations/.driver-ctr-ready': No such file or directory
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] command failed, retrying after 5 seconds
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command bash with args [-c stat /run/nvidia/validations/.driver-ctr-ready]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation]   File: /run/nvidia/validations/.driver-ctr-ready
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation]   Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Device: 18h/24d	Inode: 99719       Links: 1
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Access: 2023-03-02 16:15:12.365510470 +0000
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Modify: 2023-03-02 16:15:12.365510470 +0000
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Change: 2023-03-02 16:15:12.365510470 +0000
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation]  Birth: -
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] running command chroot with args [/run/nvidia/driver nvidia-smi]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] Thu Mar  2 16:15:12 2023       
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] +-----------------------------------------------------------------------------+
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] | NVIDIA-SMI 525.60.13    Driver Version: 525.60.13    CUDA Version: 12.0     |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |-------------------------------+----------------------+----------------------+
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |                               |                      |               MIG M. |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |===============================+======================+======================|
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] | N/A   39C    P0    26W /  70W |      2MiB / 15360MiB |      0%      Default |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |                               |                      |                  N/A |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] +-------------------------------+----------------------+----------------------+
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation]                                                                                
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] +-----------------------------------------------------------------------------+
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] | Processes:                                                                  |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |        ID   ID                                                   Usage      |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |=============================================================================|
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] |  No running processes found                                                 |
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] +-----------------------------------------------------------------------------+
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="creating symlinks under /dev/char that correspond to NVIDIA character devices"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/195:254 => /run/nvidia/driver/dev/nvidia-modeset"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/195:255 => /run/nvidia/driver/dev/nvidiactl"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/236:0 => /run/nvidia/driver/dev/nvidia-uvm"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/236:1 => /run/nvidia/driver/dev/nvidia-uvm-tools"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:1 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap1"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:2 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap2"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/195:0 => /run/nvidia/driver/dev/nvidia0"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:3 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap3"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:4 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap4"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:5 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap5"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:6 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap6"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:7 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap7"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:8 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap8"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:9 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap9"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:10 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap10"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:11 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap11"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:12 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap12"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:13 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap13"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:14 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap14"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:15 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap15"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:16 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap16"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:17 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap17"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:18 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap18"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:19 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap19"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:20 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap20"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:21 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap21"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:22 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap22"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:23 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap23"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:24 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap24"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:25 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap25"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:26 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap26"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:27 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap27"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:28 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap28"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:29 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap29"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:30 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap30"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:31 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap31"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:32 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap32"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:33 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap33"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:34 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap34"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:35 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap35"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:36 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap36"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:37 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap37"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:38 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap38"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:39 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap39"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:40 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap40"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:41 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap41"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:42 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap42"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:43 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap43"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:44 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap44"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:45 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap45"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:46 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap46"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:47 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap47"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:48 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap48"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:49 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap49"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:50 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap50"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:51 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap51"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:52 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap52"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:53 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap53"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:54 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap54"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:55 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap55"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:56 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap56"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:57 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap57"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:58 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap58"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:59 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap59"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:60 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap60"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:61 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap61"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:62 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap62"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:63 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap63"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:64 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap64"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:65 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap65"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:66 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap66"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:67 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap67"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:68 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap68"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:69 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap69"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:70 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap70"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:71 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap71"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:72 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap72"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:73 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap73"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:74 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap74"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:75 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap75"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:76 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap76"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:77 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap77"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:78 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap78"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:79 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap79"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:80 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap80"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:81 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap81"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:82 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap82"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:83 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap83"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:84 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap84"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:85 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap85"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:86 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap86"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:87 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap87"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:88 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap88"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:89 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap89"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:90 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap90"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:91 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap91"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:92 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap92"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:93 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap93"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:94 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap94"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:95 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap95"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:96 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap96"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:97 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap97"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:98 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap98"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:99 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap99"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:100 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap100"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:101 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap101"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:102 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap102"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:103 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap103"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:104 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap104"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:105 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap105"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:106 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap106"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:107 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap107"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:108 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap108"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:109 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap109"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:110 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap110"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:111 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap111"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:112 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap112"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:113 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap113"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:114 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap114"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:115 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap115"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:116 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap116"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:117 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap117"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:118 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap118"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:119 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap119"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:120 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap120"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:121 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap121"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:122 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap122"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:123 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap123"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:124 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap124"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:125 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap125"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:126 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap126"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:127 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap127"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:128 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap128"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:129 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap129"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:130 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap130"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:131 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap131"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:132 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap132"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:133 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap133"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:134 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap134"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:135 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap135"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:136 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap136"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/driver-validation] time="2023-03-02T16:15:12Z" level=info msg="Creating link /host-dev-char/239:137 => /run/nvidia/driver/dev/nvidia-caps/nvidia-cap137"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Starting nvidia-toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Parsing arguments"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Verifying Flags"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg=Initializing
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing NVIDIA container toolkit to '/usr/local/nvidia/toolkit'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Removing existing NVIDIA container toolkit installation"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Creating directory '/usr/local/nvidia/toolkit'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Creating directory '/usr/local/nvidia/toolkit/.config/nvidia-container-runtime'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing NVIDIA container library to '/usr/local/nvidia/toolkit'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Finding library libnvidia-container.so.1 (root=)"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-container.so.1'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Resolved link: '/usr/lib64/libnvidia-container.so.1' => '/usr/lib64/libnvidia-container.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing '/usr/lib64/libnvidia-container.so.1.11.0' to '/usr/local/nvidia/toolkit/libnvidia-container.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/lib64/libnvidia-container.so.1.11.0' to '/usr/local/nvidia/toolkit/libnvidia-container.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/libnvidia-container.so.1' -> 'libnvidia-container.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Finding library libnvidia-container-go.so.1 (root=)"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-container-go.so.1'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Resolved link: '/usr/lib64/libnvidia-container-go.so.1' => '/usr/lib64/libnvidia-container-go.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing '/usr/lib64/libnvidia-container-go.so.1.11.0' to '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/lib64/libnvidia-container-go.so.1.11.0' to '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1' -> 'libnvidia-container-go.so.1.11.0'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Finding library libnvidia-ml.so (root=/run/nvidia/driver)"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Checking library candidate '/run/nvidia/driver/usr/lib64/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Resolved link: '/run/nvidia/driver/usr/lib64/libnvidia-ml.so' => '/run/nvidia/driver/usr/lib64/libnvidia-ml.so.525.60.13'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Using library root /run/nvidia/driver/usr/lib64"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing executable 'nvidia-container-runtime.experimental' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing 'nvidia-container-runtime.experimental' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime-experimental'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing NVIDIA container CLI from '/usr/bin/nvidia-container-cli'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing executable '/usr/bin/nvidia-container-cli' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing '/usr/bin/nvidia-container-cli' to '/usr/local/nvidia/toolkit/nvidia-container-cli.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-cli.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-cli'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing NVIDIA container runtime hook from '/usr/bin/nvidia-container-runtime-hook'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime-hook' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime-hook' to '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook.real'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/nvidia-container-toolkit' -> 'nvidia-container-runtime-hook'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Installing NVIDIA container toolkit config '/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml'"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] Using config:
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] accept-nvidia-visible-devices-as-volume-mounts = false
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] accept-nvidia-visible-devices-envvar-when-unprivileged = true
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] disable-require = false
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] 
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] [nvidia-container-cli]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   environment = []
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   ldconfig = "@/run/nvidia/driver/sbin/ldconfig"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   load-kmods = true
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   path = "/usr/local/nvidia/toolkit/nvidia-container-cli"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   root = "/run/nvidia/driver"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] 
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] [nvidia-container-runtime]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   log-level = "info"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   mode = "auto"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   runtimes = ["docker-runc", "runc"]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] 
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]   [nvidia-container-runtime.modes]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] 
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]     [nvidia-container-runtime.modes.csv]
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr]       mount-spec-path = "/etc/nvidia-container-runtime/host-files-for-container.d"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Setting up runtime"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Parsing arguments: [/usr/local/nvidia/toolkit]"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Successfully parsed arguments"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Starting 'setup' for crio"
+[pod/nvidia-container-toolkit-daemonset-fxdlr/nvidia-container-toolkit-ctr] time="2023-03-02T16:15:18Z" level=info msg="Waiting for signal"

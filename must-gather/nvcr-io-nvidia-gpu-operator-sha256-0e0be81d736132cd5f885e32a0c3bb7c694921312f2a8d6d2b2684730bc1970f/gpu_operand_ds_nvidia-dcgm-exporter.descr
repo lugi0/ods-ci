@@ -1,0 +1,71 @@
+Name:           nvidia-dcgm-exporter
+Selector:       app=nvidia-dcgm-exporter
+Node-Selector:  nvidia.com/gpu.deploy.dcgm-exporter=true
+Labels:         app=nvidia-dcgm-exporter
+Annotations:    deprecated.daemonset.template.generation: 1
+                nvidia.com/last-applied-hash: 758c838b17c49bc7
+                openshift.io/scc: nvidia-dcgm-exporter
+Desired Number of Nodes Scheduled: 1
+Current Number of Nodes Scheduled: 1
+Number of Nodes Scheduled with Up-to-date Pods: 1
+Number of Nodes Scheduled with Available Pods: 1
+Number of Nodes Misscheduled: 0
+Pods Status:  1 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app=nvidia-dcgm-exporter
+  Service Account:  nvidia-dcgm-exporter
+  Init Containers:
+   toolkit-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    Environment:  <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+   init-pod-nvidia-node-status-exporter:
+    Image:      nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /bin/entrypoint.sh
+    Environment:
+      NVIDIA_DISABLE_REQUIRE:  true
+    Mounts:
+      /bin/entrypoint.sh from init-config (ro,path="entrypoint.sh")
+      /var/lib/kubelet/pod-resources from pod-gpu-resources (rw)
+  Containers:
+   nvidia-dcgm-exporter:
+    Image:      nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d
+    Port:       9400/TCP
+    Host Port:  9400/TCP
+    Environment:
+      DCGM_EXPORTER_LISTEN:         :9400
+      DCGM_EXPORTER_KUBERNETES:     true
+      DCGM_EXPORTER_COLLECTORS:     /etc/dcgm-exporter/dcp-metrics-included.csv
+      DCGM_REMOTE_HOSTENGINE_INFO:  localhost:5555
+    Mounts:
+      /var/lib/kubelet/pod-resources from pod-gpu-resources (ro)
+  Volumes:
+   pod-gpu-resources:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/kubelet/pod-resources
+    HostPathType:  
+   run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  
+   init-config:
+    Type:               ConfigMap (a volume populated by a ConfigMap)
+    Name:               nvidia-dcgm-exporter
+    Optional:           false
+  Priority Class Name:  system-node-critical
+Events:
+  Type    Reason            Age   From                  Message
+  ----    ------            ----  ----                  -------
+  Normal  SuccessfulDelete  25m   daemonset-controller  Deleted pod: nvidia-dcgm-exporter-79jxl
+  Normal  SuccessfulCreate  24m   daemonset-controller  Created pod: nvidia-dcgm-exporter-5mprj

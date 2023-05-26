@@ -1,0 +1,151 @@
+Name:             alertmanager-gpuaddon-alertmanager-2
+Namespace:        redhat-nvidia-gpu-addon
+Priority:         0
+Service Account:  default
+Node:             ip-10-0-229-111.us-east-2.compute.internal/10.0.229.111
+Start Time:       Wed, 01 Mar 2023 12:37:59 +0000
+Labels:           alertmanager=gpuaddon-alertmanager
+                  app.kubernetes.io/instance=gpuaddon-alertmanager
+                  app.kubernetes.io/managed-by=prometheus-operator
+                  app.kubernetes.io/name=alertmanager
+                  app.kubernetes.io/version=0.24.0
+                  controller-revision-hash=alertmanager-gpuaddon-alertmanager-65cd6dcf77
+                  statefulset.kubernetes.io/pod-name=alertmanager-gpuaddon-alertmanager-2
+Annotations:      k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.6"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  k8s.v1.cni.cncf.io/networks-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.6"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  kubectl.kubernetes.io/default-container: alertmanager
+                  openshift.io/scc: restricted
+Status:           Running
+IP:               10.131.0.6
+IPs:
+  IP:           10.131.0.6
+Controlled By:  StatefulSet/alertmanager-gpuaddon-alertmanager
+Containers:
+  alertmanager:
+    Container ID:  cri-o://e0e81c11cc9dfd4f3cf4a3126cc003a905bab36d5a2ad7c2b035abf6c6fbaa4a
+    Image:         registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:c19d7f46cdbe73cdec06fde1bb621180e512400145d8aff94476a464004b6dd8
+    Image ID:      registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:89e69acc561cc7bea9a48b799ca9b08912c919f098393510f9a4599db8b21b5c
+    Ports:         9093/TCP, 9094/TCP, 9094/UDP
+    Host Ports:    0/TCP, 0/TCP, 0/UDP
+    Args:
+      --config.file=/etc/alertmanager/config/alertmanager.yaml
+      --storage.path=/alertmanager
+      --data.retention=120h
+      --cluster.listen-address=[$(POD_IP)]:9094
+      --web.listen-address=:9093
+      --web.route-prefix=/
+      --cluster.peer=alertmanager-gpuaddon-alertmanager-0.alertmanager-operated:9094
+      --cluster.peer=alertmanager-gpuaddon-alertmanager-1.alertmanager-operated:9094
+      --cluster.peer=alertmanager-gpuaddon-alertmanager-2.alertmanager-operated:9094
+      --cluster.reconnect-timeout=5m
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:13:42 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     100m
+      memory:  200Mi
+    Requests:
+      cpu:      100m
+      memory:   200Mi
+    Liveness:   http-get http://:web/-/healthy delay=0s timeout=3s period=10s #success=1 #failure=10
+    Readiness:  http-get http://:web/-/ready delay=3s timeout=3s period=5s #success=1 #failure=10
+    Environment:
+      POD_IP:   (v1:status.podIP)
+    Mounts:
+      /alertmanager from alertmanager-gpuaddon-alertmanager-db (rw)
+      /etc/alertmanager/certs from tls-assets (ro)
+      /etc/alertmanager/config from config-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wtp5p (ro)
+  config-reloader:
+    Container ID:  cri-o://d39349cce8635bb740be3f37db73f739f5b950c910d49d07e2cb9ac32cd71cd3
+    Image:         registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Image ID:      registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Port:          8080/TCP
+    Host Port:     0/TCP
+    Command:
+      /bin/prometheus-config-reloader
+    Args:
+      --listen-address=:8080
+      --reload-url=http://localhost:9093/-/reload
+      --watched-dir=/etc/alertmanager/config
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:13:43 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     100m
+      memory:  50Mi
+    Requests:
+      cpu:     100m
+      memory:  50Mi
+    Environment:
+      POD_NAME:  alertmanager-gpuaddon-alertmanager-2 (v1:metadata.name)
+      SHARD:     -1
+    Mounts:
+      /etc/alertmanager/config from config-volume (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wtp5p (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config-volume:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  alertmanager-gpuaddon-alertmanager-generated
+    Optional:    false
+  tls-assets:
+    Type:                Projected (a volume that contains injected data from multiple sources)
+    SecretName:          alertmanager-gpuaddon-alertmanager-tls-assets-0
+    SecretOptionalName:  <nil>
+  alertmanager-gpuaddon-alertmanager-db:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-wtp5p:
+    Type:                     Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:   3607
+    ConfigMapName:            kube-root-ca.crt
+    ConfigMapOptional:        <nil>
+    DownwardAPI:              true
+    ConfigMapName:            openshift-service-ca.crt
+    ConfigMapOptional:        <nil>
+QoS Class:                    Guaranteed
+Node-Selectors:               <none>
+Tolerations:                  node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                              node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Topology Spread Constraints:  kubernetes.io/hostname:ScheduleAnyway when max skew 1 is exceeded for selector app=alertmanager
+Events:
+  Type     Reason          Age                From             Message
+  ----     ------          ----               ----             -------
+  Warning  NodeNotReady    26m                node-controller  Node is not ready
+  Normal   AddedInterface  25m                multus           Add eth0 [10.131.0.6/23] from openshift-sdn
+  Normal   Pulled          25m                kubelet          Container image "registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:c19d7f46cdbe73cdec06fde1bb621180e512400145d8aff94476a464004b6dd8" already present on machine
+  Normal   Created         25m                kubelet          Created container alertmanager
+  Normal   Started         25m                kubelet          Started container alertmanager
+  Normal   Pulled          25m                kubelet          Container image "registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6" already present on machine
+  Normal   Created         25m                kubelet          Created container config-reloader
+  Normal   Started         25m                kubelet          Started container config-reloader
+  Warning  Unhealthy       25m (x2 over 25m)  kubelet          Liveness probe failed: Get "http://10.131.0.6:9093/-/healthy": dial tcp 10.131.0.6:9093: connect: connection refused
+  Warning  Unhealthy       25m (x3 over 25m)  kubelet          Readiness probe failed: Get "http://10.131.0.6:9093/-/ready": dial tcp 10.131.0.6:9093: connect: connection refused

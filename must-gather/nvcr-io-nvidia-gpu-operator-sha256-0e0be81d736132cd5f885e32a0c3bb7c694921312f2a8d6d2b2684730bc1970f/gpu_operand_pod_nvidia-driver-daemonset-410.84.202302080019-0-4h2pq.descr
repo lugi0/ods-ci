@@ -1,0 +1,210 @@
+Name:                 nvidia-driver-daemonset-410.84.202302080019-0-4h2pq
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-driver
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Wed, 01 Mar 2023 12:39:18 +0000
+Labels:               app=nvidia-driver-daemonset-410.84.202302080019-0
+                      controller-revision-hash=55dd87b668
+                      openshift.driver-toolkit=true
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.13"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.13"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: nvidia-driver
+Status:               Running
+IP:                   10.131.2.13
+IPs:
+  IP:           10.131.2.13
+Controlled By:  DaemonSet/nvidia-driver-daemonset-410.84.202302080019-0
+Init Containers:
+  k8s-driver-manager:
+    Container ID:  cri-o://19abe180e9d81ee273a9479fedcffe8aa86ed4321f7a1a49f78f181965e3245c
+    Image:         nvcr.io/nvidia/cloud-native/k8s-driver-manager@sha256:9177a0ae30798b42d0387f6a20cd3ce3cd1799a91b7866bf812368764b05b1af
+    Image ID:      nvcr.io/nvidia/cloud-native/k8s-driver-manager@sha256:06482db4739b5292fdfda2b6efd4e758c1f0dc9bf2f4e569a2ed971cd71fffd4
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      driver-manager
+    Args:
+      uninstall_driver
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:13:42 +0000
+      Finished:     Thu, 02 Mar 2023 16:14:21 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      NODE_NAME:                    (v1:spec.nodeName)
+      NVIDIA_VISIBLE_DEVICES:      void
+      ENABLE_GPU_POD_EVICTION:     true
+      ENABLE_AUTO_DRAIN:           true
+      DRAIN_USE_FORCE:             false
+      DRAIN_POD_SELECTOR_LABEL:    
+      DRAIN_TIMEOUT_SECONDS:       0s
+      DRAIN_DELETE_EMPTYDIR_DATA:  false
+      OPERATOR_NAMESPACE:          redhat-nvidia-gpu-addon (v1:metadata.namespace)
+    Mounts:
+      /host from host-root (ro)
+      /run/nvidia from run-nvidia (rw)
+      /sys from host-sys (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gmd2k (ro)
+Containers:
+  nvidia-driver-ctr:
+    Container ID:  cri-o://39409bd84fc10f2dc61175acd57f1f05127b47a9351e580c5db6a521845424fd
+    Image:         nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925
+    Image ID:      nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      ocp_dtk_entrypoint
+    Args:
+      nv-ctr-run-with-dtk
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:22 +0000
+    Ready:          True
+    Restart Count:  2
+    Startup:        exec [sh -c nvidia-smi && touch /run/nvidia/validations/.driver-ctr-ready] delay=30s timeout=10s period=10s #success=1 #failure=120
+    Environment:
+      RHEL_VERSION:       8.4
+      OPENSHIFT_VERSION:  4.10
+    Mounts:
+      /dev/log from dev-log (rw)
+      /host-etc/os-release from host-os-release (ro)
+      /mnt/shared-nvidia-driver-toolkit from shared-nvidia-driver-toolkit (rw)
+      /run/mellanox/drivers from run-mellanox-drivers (rw)
+      /run/mellanox/drivers/usr/src from mlnx-ofed-usr-src (rw)
+      /run/nvidia from run-nvidia (rw)
+      /run/nvidia-topologyd from run-nvidia-topologyd (rw)
+      /var/log from var-log (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gmd2k (ro)
+  openshift-driver-toolkit-ctr:
+    Container ID:  cri-o://bf98a0d4e27e35f072c76b0f1eb7a637a458a112c60c41dc4861fb9a0f5d5fc1
+    Image:         quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734
+    Image ID:      quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      bash
+      -xc
+    Args:
+      until [ -f /mnt/shared-nvidia-driver-toolkit/dir_prepared ]; do echo  Waiting for nvidia-driver-ctr container to prepare the shared directory ...; sleep 10; done; exec /mnt/shared-nvidia-driver-toolkit/ocp_dtk_entrypoint dtk-build-driver
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:22 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      RHCOS_VERSION:           410.84.202302080019-0
+      NVIDIA_VISIBLE_DEVICES:  void
+    Mounts:
+      /mnt/shared-nvidia-driver-toolkit from shared-nvidia-driver-toolkit (rw)
+      /run/mellanox/drivers/usr/src from mlnx-ofed-usr-src (rw)
+      /var/log from var-log (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gmd2k (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  DirectoryOrCreate
+  var-log:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/log
+    HostPathType:  
+  dev-log:
+    Type:          HostPath (bare host directory volume)
+    Path:          /dev/log
+    HostPathType:  
+  host-os-release:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/os-release
+    HostPathType:  
+  run-nvidia-topologyd:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia-topologyd
+    HostPathType:  DirectoryOrCreate
+  mlnx-ofed-usr-src:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/mellanox/drivers/usr/src
+    HostPathType:  DirectoryOrCreate
+  run-mellanox-drivers:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/mellanox/drivers
+    HostPathType:  DirectoryOrCreate
+  run-nvidia-validations:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/validations
+    HostPathType:  DirectoryOrCreate
+  host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+  host-sys:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys
+    HostPathType:  Directory
+  shared-nvidia-driver-toolkit:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-gmd2k:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              feature.node.kubernetes.io/system-os_release.OSTREE_VERSION=410.84.202302080019-0
+                             nvidia.com/gpu.deploy.driver=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type     Reason                  Age   From             Message
+  ----     ------                  ----  ----             -------
+  Warning  NodeNotReady            27m   node-controller  Node is not ready
+  Normal   AddedInterface          25m   multus           Add eth0 [10.131.2.10/23] from openshift-sdn
+  Warning  FailedCreatePodSandBox  25m   kubelet          Failed to create pod sandbox: rpc error: code = Unknown desc = failed to create pod network sandbox k8s_nvidia-driver-daemonset-410.84.202302080019-0-4h2pq_redhat-nvidia-gpu-addon_cedd95d1-5686-47ca-8ae2-6876b3f14ec1_0(f305bebd959cccfc9991c82908e4fe13987c39c74f19b449c68ca846f715de7a): error adding pod redhat-nvidia-gpu-addon_nvidia-driver-daemonset-410.84.202302080019-0-4h2pq to CNI network "multus-cni-network": plugin type="multus" name="multus-cni-network" failed (add):
+  Normal   AddedInterface          25m   multus           Add eth0 [10.131.2.13/23] from openshift-sdn
+  Normal   Pulled                  25m   kubelet          Container image "nvcr.io/nvidia/cloud-native/k8s-driver-manager@sha256:9177a0ae30798b42d0387f6a20cd3ce3cd1799a91b7866bf812368764b05b1af" already present on machine
+  Normal   Created                 25m   kubelet          Created container k8s-driver-manager
+  Normal   Started                 25m   kubelet          Started container k8s-driver-manager
+  Normal   Pulled                  24m   kubelet          Container image "nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925" already present on machine
+  Normal   Created                 24m   kubelet          Created container nvidia-driver-ctr
+  Normal   Started                 24m   kubelet          Started container nvidia-driver-ctr
+  Normal   Pulled                  24m   kubelet          Container image "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734" already present on machine
+  Normal   Created                 24m   kubelet          Created container openshift-driver-toolkit-ctr
+  Normal   Started                 24m   kubelet          Started container openshift-driver-toolkit-ctr
+  Warning  Unhealthy               24m   kubelet          Startup probe failed: sh: nvidia-smi: command not found
+  Warning  Unhealthy               24m   kubelet          Startup probe failed: NVIDIA-SMI couldn't find libnvidia-ml.so library in your system. Please make sure that the NVIDIA Display Driver is properly installed and present in your system.
+Please also try adding directory that contains libnvidia-ml.so to your system PATH.

@@ -1,0 +1,1607 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 2d636b09e9e54907
+    creationTimestamp: "2023-03-01T12:39:19Z"
+    generation: 1
+    labels:
+      app: gpu-feature-discovery
+      app.kubernetes.io/part-of: nvidia-gpu
+    name: gpu-feature-discovery
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "972640"
+    uid: f7f7b3cd-78ff-45d8-958f-51e02023c39e
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: gpu-feature-discovery
+        app.kubernetes.io/part-of: nvidia-gpu
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: gpu-feature-discovery
+          app.kubernetes.io/part-of: nvidia-gpu
+      spec:
+        containers:
+        - env:
+          - name: GFD_SLEEP_INTERVAL
+            value: 60s
+          - name: GFD_FAIL_ON_INIT_ERROR
+            value: "true"
+          - name: MIG_STRATEGY
+            value: single
+          - name: NVIDIA_MIG_MONITOR_DEVICES
+            value: all
+          image: nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d
+          imagePullPolicy: IfNotPresent
+          name: gpu-feature-discovery
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/kubernetes/node-feature-discovery/features.d
+            name: output-dir
+          - mountPath: /sys/class/dmi/id/product_name
+            name: dmi-product-name
+        dnsPolicy: ClusterFirst
+        initContainers:
+        - args:
+          - until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for
+            nvidia container stack to be setup; sleep 5; done
+          command:
+          - sh
+          - -c
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: Bidirectional
+            name: run-nvidia
+        nodeSelector:
+          nvidia.com/gpu.deploy.gpu-feature-discovery: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-gpu-feature-discovery
+        serviceAccountName: nvidia-gpu-feature-discovery
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /etc/kubernetes/node-feature-discovery/features.d
+            type: ""
+          name: output-dir
+        - hostPath:
+            path: /sys/class/dmi/id/product_name
+            type: ""
+          name: dmi-product-name
+        - hostPath:
+            path: /run/nvidia
+            type: Directory
+          name: run-nvidia
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+    creationTimestamp: "2023-03-01T12:38:06Z"
+    generation: 1
+    labels:
+      app: nfd-master
+    name: nfd-master
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nfd.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: NodeFeatureDiscovery
+      name: ocp-gpu-addon
+      uid: 3d7ca8fd-19e0-422d-8b69-0cdfd58abc9c
+    resourceVersion: "967215"
+    uid: 73050428-b1e9-41e4-85e6-dd3777c3fa8c
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nfd-master
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nfd-master
+      spec:
+        containers:
+        - args:
+          - --port=12000
+          command:
+          - nfd-master
+          - --extra-label-ns=nvidia.com
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          image: registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47
+          imagePullPolicy: Always
+          name: nfd-master
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        nodeSelector:
+          node-role.kubernetes.io/master: ""
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nfd-master
+        serviceAccountName: nfd-master
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Equal
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 3
+    desiredNumberScheduled: 3
+    numberAvailable: 3
+    numberMisscheduled: 0
+    numberReady: 3
+    observedGeneration: 1
+    updatedNumberScheduled: 3
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+    creationTimestamp: "2023-03-01T12:38:06Z"
+    generation: 1
+    labels:
+      app: nfd-worker
+    name: nfd-worker
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nfd.openshift.io/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: NodeFeatureDiscovery
+      name: ocp-gpu-addon
+      uid: 3d7ca8fd-19e0-422d-8b69-0cdfd58abc9c
+    resourceVersion: "966156"
+    uid: 2e97e3be-afd9-40c3-94d2-9698a22741a6
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nfd-worker
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nfd-worker
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: node-role.kubernetes.io/master
+                  operator: DoesNotExist
+              - matchExpressions:
+                - key: node-role.kubernetes.io/worker
+                  operator: Exists
+        containers:
+        - args:
+          - --server=nfd-master:$(NFD_MASTER_SERVICE_PORT)
+          command:
+          - nfd-worker
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          image: registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47
+          imagePullPolicy: Always
+          name: nfd-worker
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /host-boot
+            name: host-boot
+            readOnly: true
+          - mountPath: /host-etc/os-release
+            name: host-os-release
+            readOnly: true
+          - mountPath: /host-sys
+            name: host-sys
+          - mountPath: /host-usr/lib
+            name: host-usr-lib
+            readOnly: true
+          - mountPath: /host-usr/src
+            name: host-usr-src
+            readOnly: true
+          - mountPath: /etc/kubernetes/node-feature-discovery
+            name: nfd-worker-config
+          - mountPath: /etc/kubernetes/node-feature-discovery/source.d
+            name: nfd-hooks
+          - mountPath: /etc/kubernetes/node-feature-discovery/features.d
+            name: nfd-features
+          - mountPath: /etc/kubernetes/node-feature-discovery/custom.d/custom-rules
+            name: custom-config
+            readOnly: true
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nfd-worker
+        serviceAccountName: nfd-worker
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /boot
+            type: ""
+          name: host-boot
+        - hostPath:
+            path: /etc/os-release
+            type: ""
+          name: host-os-release
+        - hostPath:
+            path: /sys
+            type: ""
+          name: host-sys
+        - hostPath:
+            path: /usr/lib
+            type: ""
+          name: host-usr-lib
+        - hostPath:
+            path: /usr/src
+            type: ""
+          name: host-usr-src
+        - hostPath:
+            path: /etc/kubernetes/node-feature-discovery/source.d
+            type: ""
+          name: nfd-hooks
+        - hostPath:
+            path: /etc/kubernetes/node-feature-discovery/features.d
+            type: ""
+          name: nfd-features
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: nfd-worker-conf
+              path: nfd-worker.conf
+            name: nfd-worker
+          name: nfd-worker-config
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: custom-conf
+              path: custom.conf
+            name: nfd-worker
+          name: custom-config
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 5
+    desiredNumberScheduled: 5
+    numberAvailable: 5
+    numberMisscheduled: 0
+    numberReady: 5
+    observedGeneration: 1
+    updatedNumberScheduled: 5
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 8ccb75cd43d4f76b
+      openshift.io/scc: hostmount-anyuid
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-container-toolkit-daemonset
+    name: nvidia-container-toolkit-daemonset
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "971602"
+    uid: 92e221ed-af5e-498e-a632-a5a340311ac4
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-container-toolkit-daemonset
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-container-toolkit-daemonset
+      spec:
+        containers:
+        - args:
+          - '[[ -f /run/nvidia/validations/host-driver-ready ]] && driver_root=/ ||
+            driver_root=/run/nvidia/driver; export NVIDIA_DRIVER_ROOT=$driver_root;
+            sleep 5; exec nvidia-toolkit /usr/local/nvidia'
+          command:
+          - bash
+          - -c
+          env:
+          - name: RUNTIME_ARGS
+          - name: RUNTIME
+            value: crio
+          image: nvcr.io/nvidia/k8s/container-toolkit@sha256:efb88937f73434994d1bbadc87b492a1df047aa9f8d6e9f5ec3b09536e6e7691
+          imagePullPolicy: IfNotPresent
+          name: nvidia-container-toolkit-ctr
+          resources: {}
+          securityContext:
+            privileged: true
+            seLinuxOptions:
+              level: s0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: Bidirectional
+            name: nvidia-run-path
+          - mountPath: /usr/local/nvidia
+            name: toolkit-install-dir
+          - mountPath: /usr/share/containers/oci/hooks.d
+            name: crio-hooks
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        hostPID: true
+        initContainers:
+        - args:
+          - nvidia-validator
+          command:
+          - sh
+          - -c
+          env:
+          - name: WITH_WAIT
+            value: "true"
+          - name: COMPONENT
+            value: driver
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: driver-validation
+          resources: {}
+          securityContext:
+            privileged: true
+            seLinuxOptions:
+              level: s0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia/driver
+            mountPropagation: HostToContainer
+            name: driver-install-path
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+            readOnly: true
+          - mountPath: /host-dev-char
+            name: host-dev-char
+        nodeSelector:
+          nvidia.com/gpu.deploy.container-toolkit: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-container-toolkit
+        serviceAccountName: nvidia-container-toolkit
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /run/nvidia
+            type: DirectoryOrCreate
+          name: nvidia-run-path
+        - hostPath:
+            path: /run/nvidia/validations
+            type: DirectoryOrCreate
+          name: run-nvidia-validations
+        - hostPath:
+            path: /run/nvidia/driver
+            type: ""
+          name: driver-install-path
+        - hostPath:
+            path: /
+            type: ""
+          name: host-root
+        - hostPath:
+            path: /usr/local/nvidia
+            type: ""
+          name: toolkit-install-dir
+        - hostPath:
+            path: /run/containers/oci/hooks.d
+            type: ""
+          name: crio-hooks
+        - hostPath:
+            path: /dev/char
+            type: ""
+          name: host-dev-char
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 8994a02b7109a89e
+      openshift.io/scc: hostmount-anyuid
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-dcgm
+    name: nvidia-dcgm
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "972615"
+    uid: 7bfa336a-ea74-4de1-b2c1-28ea0b134de1
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-dcgm
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-dcgm
+      spec:
+        containers:
+        - image: nvcr.io/nvidia/cloud-native/dcgm@sha256:c3cf59dd5d6160eba5d816ade2e81b35ebb10f4884df67971f6ace36f8e6efc1
+          imagePullPolicy: IfNotPresent
+          name: nvidia-dcgm-ctr
+          ports:
+          - containerPort: 5555
+            hostPort: 5555
+            name: dcgm
+            protocol: TCP
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        hostNetwork: true
+        initContainers:
+        - args:
+          - until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for
+            nvidia container stack to be setup; sleep 5; done
+          command:
+          - sh
+          - -c
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        nodeSelector:
+          nvidia.com/gpu.deploy.dcgm: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-dcgm
+        serviceAccountName: nvidia-dcgm
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /run/nvidia
+            type: Directory
+          name: run-nvidia
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 758c838b17c49bc7
+      openshift.io/scc: nvidia-dcgm-exporter
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-dcgm-exporter
+    name: nvidia-dcgm-exporter
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "972637"
+    uid: cfdfaf85-e628-428f-868f-6a4301e257da
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-dcgm-exporter
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-dcgm-exporter
+      spec:
+        containers:
+        - env:
+          - name: DCGM_EXPORTER_LISTEN
+            value: :9400
+          - name: DCGM_EXPORTER_KUBERNETES
+            value: "true"
+          - name: DCGM_EXPORTER_COLLECTORS
+            value: /etc/dcgm-exporter/dcp-metrics-included.csv
+          - name: DCGM_REMOTE_HOSTENGINE_INFO
+            value: localhost:5555
+          image: nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d
+          imagePullPolicy: IfNotPresent
+          name: nvidia-dcgm-exporter
+          ports:
+          - containerPort: 9400
+            hostPort: 9400
+            name: metrics
+            protocol: TCP
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/kubelet/pod-resources
+            name: pod-gpu-resources
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        hostNetwork: true
+        initContainers:
+        - args:
+          - until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for
+            nvidia container stack to be setup; sleep 5; done
+          command:
+          - sh
+          - -c
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        - command:
+          - /bin/entrypoint.sh
+          env:
+          - name: NVIDIA_DISABLE_REQUIRE
+            value: "true"
+          image: nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d
+          imagePullPolicy: IfNotPresent
+          name: init-pod-nvidia-node-status-exporter
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/kubelet/pod-resources
+            name: pod-gpu-resources
+          - mountPath: /bin/entrypoint.sh
+            name: init-config
+            readOnly: true
+            subPath: entrypoint.sh
+        nodeSelector:
+          nvidia.com/gpu.deploy.dcgm-exporter: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-dcgm-exporter
+        serviceAccountName: nvidia-dcgm-exporter
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /var/lib/kubelet/pod-resources
+            type: ""
+          name: pod-gpu-resources
+        - hostPath:
+            path: /run/nvidia
+            type: ""
+          name: run-nvidia
+        - configMap:
+            defaultMode: 448
+            name: nvidia-dcgm-exporter
+          name: init-config
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: e2bee65194e7ab87
+      openshift.io/scc: hostmount-anyuid
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-device-plugin-daemonset
+    name: nvidia-device-plugin-daemonset
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "972612"
+    uid: 57f9ee0d-c8a1-45fa-bc90-d467c7f84f42
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-device-plugin-daemonset
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-device-plugin-daemonset
+      spec:
+        containers:
+        - args:
+          - '[[ -f /run/nvidia/validations/host-driver-ready ]] && driver_root=/ ||
+            driver_root=/run/nvidia/driver; export NVIDIA_DRIVER_ROOT=$driver_root;
+            exec nvidia-device-plugin;'
+          command:
+          - bash
+          - -c
+          env:
+          - name: PASS_DEVICE_SPECS
+            value: "true"
+          - name: FAIL_ON_INIT_ERROR
+            value: "true"
+          - name: DEVICE_LIST_STRATEGY
+            value: envvar
+          - name: DEVICE_ID_STRATEGY
+            value: uuid
+          - name: NVIDIA_VISIBLE_DEVICES
+            value: all
+          - name: NVIDIA_DRIVER_CAPABILITIES
+            value: all
+          - name: MIG_STRATEGY
+            value: single
+          - name: NVIDIA_MIG_MONITOR_DEVICES
+            value: all
+          image: nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3
+          imagePullPolicy: IfNotPresent
+          name: nvidia-device-plugin
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/kubelet/device-plugins
+            name: device-plugin
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        dnsPolicy: ClusterFirst
+        initContainers:
+        - args:
+          - until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for
+            nvidia container stack to be setup; sleep 5; done
+          command:
+          - sh
+          - -c
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        nodeSelector:
+          nvidia.com/gpu.deploy.device-plugin: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-device-plugin
+        serviceAccountName: nvidia-device-plugin
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /var/lib/kubelet/device-plugins
+            type: ""
+          name: device-plugin
+        - hostPath:
+            path: /run/nvidia
+            type: Directory
+          name: run-nvidia
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: f34af107aa3aab7a
+      openshift.io/scc: nvidia-driver
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-driver-daemonset-410.84.202302080019-0
+      openshift.driver-toolkit: "true"
+      openshift.driver-toolkit.rhcos: 410.84.202302080019-0
+    name: nvidia-driver-daemonset-410.84.202302080019-0
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "971540"
+    uid: a6e58221-556f-4dbd-8124-0abb15af58df
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-driver-daemonset-410.84.202302080019-0
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-driver-daemonset-410.84.202302080019-0
+          openshift.driver-toolkit: "true"
+      spec:
+        containers:
+        - args:
+          - nv-ctr-run-with-dtk
+          command:
+          - ocp_dtk_entrypoint
+          env:
+          - name: RHEL_VERSION
+            value: "8.4"
+          - name: OPENSHIFT_VERSION
+            value: "4.10"
+          image: nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /bin/sh
+                - -c
+                - rm -f /run/nvidia/validations/.driver-ctr-ready
+          name: nvidia-driver-ctr
+          resources: {}
+          securityContext:
+            privileged: true
+            seLinuxOptions:
+              level: s0
+          startupProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - nvidia-smi && touch /run/nvidia/validations/.driver-ctr-ready
+            failureThreshold: 120
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: Bidirectional
+            name: run-nvidia
+          - mountPath: /run/nvidia-topologyd
+            name: run-nvidia-topologyd
+          - mountPath: /var/log
+            name: var-log
+          - mountPath: /dev/log
+            name: dev-log
+          - mountPath: /host-etc/os-release
+            name: host-os-release
+            readOnly: true
+          - mountPath: /run/mellanox/drivers/usr/src
+            mountPropagation: HostToContainer
+            name: mlnx-ofed-usr-src
+          - mountPath: /run/mellanox/drivers
+            mountPropagation: HostToContainer
+            name: run-mellanox-drivers
+          - mountPath: /mnt/shared-nvidia-driver-toolkit
+            name: shared-nvidia-driver-toolkit
+        - args:
+          - until [ -f /mnt/shared-nvidia-driver-toolkit/dir_prepared ]; do echo  Waiting
+            for nvidia-driver-ctr container to prepare the shared directory ...; sleep
+            10; done; exec /mnt/shared-nvidia-driver-toolkit/ocp_dtk_entrypoint dtk-build-driver
+          command:
+          - bash
+          - -xc
+          env:
+          - name: RHCOS_VERSION
+            value: 410.84.202302080019-0
+          - name: NVIDIA_VISIBLE_DEVICES
+            value: void
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734
+          imagePullPolicy: IfNotPresent
+          name: openshift-driver-toolkit-ctr
+          resources: {}
+          securityContext:
+            privileged: true
+            seLinuxOptions:
+              level: s0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /mnt/shared-nvidia-driver-toolkit
+            name: shared-nvidia-driver-toolkit
+          - mountPath: /var/log
+            name: var-log
+          - mountPath: /run/mellanox/drivers/usr/src
+            mountPropagation: HostToContainer
+            name: mlnx-ofed-usr-src
+        dnsPolicy: ClusterFirst
+        hostPID: true
+        initContainers:
+        - args:
+          - uninstall_driver
+          command:
+          - driver-manager
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: NVIDIA_VISIBLE_DEVICES
+            value: void
+          - name: ENABLE_GPU_POD_EVICTION
+            value: "true"
+          - name: ENABLE_AUTO_DRAIN
+            value: "true"
+          - name: DRAIN_USE_FORCE
+            value: "false"
+          - name: DRAIN_POD_SELECTOR_LABEL
+          - name: DRAIN_TIMEOUT_SECONDS
+            value: 0s
+          - name: DRAIN_DELETE_EMPTYDIR_DATA
+            value: "false"
+          - name: OPERATOR_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: nvcr.io/nvidia/cloud-native/k8s-driver-manager@sha256:9177a0ae30798b42d0387f6a20cd3ce3cd1799a91b7866bf812368764b05b1af
+          imagePullPolicy: IfNotPresent
+          name: k8s-driver-manager
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: Bidirectional
+            name: run-nvidia
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+            readOnly: true
+          - mountPath: /sys
+            name: host-sys
+        nodeSelector:
+          feature.node.kubernetes.io/system-os_release.OSTREE_VERSION: 410.84.202302080019-0
+          nvidia.com/gpu.deploy.driver: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-driver
+        serviceAccountName: nvidia-driver
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /run/nvidia
+            type: DirectoryOrCreate
+          name: run-nvidia
+        - hostPath:
+            path: /var/log
+            type: ""
+          name: var-log
+        - hostPath:
+            path: /dev/log
+            type: ""
+          name: dev-log
+        - hostPath:
+            path: /etc/os-release
+            type: ""
+          name: host-os-release
+        - hostPath:
+            path: /run/nvidia-topologyd
+            type: DirectoryOrCreate
+          name: run-nvidia-topologyd
+        - hostPath:
+            path: /run/mellanox/drivers/usr/src
+            type: DirectoryOrCreate
+          name: mlnx-ofed-usr-src
+        - hostPath:
+            path: /run/mellanox/drivers
+            type: DirectoryOrCreate
+          name: run-mellanox-drivers
+        - hostPath:
+            path: /run/nvidia/validations
+            type: DirectoryOrCreate
+          name: run-nvidia-validations
+        - hostPath:
+            path: /
+            type: ""
+          name: host-root
+        - hostPath:
+            path: /sys
+            type: Directory
+          name: host-sys
+        - emptyDir: {}
+          name: shared-nvidia-driver-toolkit
+    updateStrategy:
+      type: OnDelete
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 371e9ccbab0490d4
+    creationTimestamp: "2023-03-01T12:39:19Z"
+    generation: 1
+    labels:
+      app: nvidia-mig-manager
+    name: nvidia-mig-manager
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "79632"
+    uid: 00877f5b-b728-4d33-90d8-9ec810b1100b
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-mig-manager
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-mig-manager
+      spec:
+        containers:
+        - args:
+          - ' [[ -f /run/nvidia/validations/host-driver-ready ]] && host_driver=true
+            || host_driver=false; export WITH_SHUTDOWN_HOST_GPU_CLIENTS=$host_driver;
+            exec nvidia-mig-manager'
+          command:
+          - bash
+          - -c
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: CONFIG_FILE
+            value: /mig-parted-config/config.yaml
+          - name: GPU_CLIENTS_FILE
+            value: /gpu-clients/clients.yaml
+          - name: DEFAULT_GPU_CLIENTS_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: nvcr.io/nvidia/cloud-native/k8s-mig-manager@sha256:50c2a2b998e467c82716efa79fe136aa6f7ea95fd23576cf384d251bb9628640
+          imagePullPolicy: IfNotPresent
+          name: nvidia-mig-manager
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /sys
+            name: host-sys
+          - mountPath: /mig-parted-config
+            name: mig-parted-config
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+          - mountPath: /gpu-clients
+            name: gpu-clients
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        dnsPolicy: ClusterFirst
+        hostIPC: true
+        hostPID: true
+        initContainers:
+        - args:
+          - until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for
+            nvidia container toolkit to be setup; sleep 5; done
+          command:
+          - sh
+          - -c
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+        nodeSelector:
+          nvidia.com/gpu.deploy.mig-manager: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-mig-manager
+        serviceAccountName: nvidia-mig-manager
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /sys
+            type: Directory
+          name: host-sys
+        - configMap:
+            defaultMode: 420
+            name: default-mig-parted-config
+          name: mig-parted-config
+        - hostPath:
+            path: /run/nvidia
+            type: Directory
+          name: run-nvidia
+        - hostPath:
+            path: /
+            type: ""
+          name: host-root
+        - configMap:
+            defaultMode: 420
+            name: default-gpu-clients
+          name: gpu-clients
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 0
+    desiredNumberScheduled: 0
+    numberMisscheduled: 0
+    numberReady: 0
+    observedGeneration: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: c04aaad689bf1002
+      openshift.io/scc: nvidia-node-status-exporter
+    creationTimestamp: "2023-03-01T12:39:19Z"
+    generation: 1
+    labels:
+      app: nvidia-node-status-exporter
+    name: nvidia-node-status-exporter
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "964041"
+    uid: d0dfb89f-a77d-4e71-a9a5-aaf02e02d67a
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-node-status-exporter
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-node-status-exporter
+      spec:
+        containers:
+        - command:
+          - nvidia-validator
+          env:
+          - name: NVIDIA_VISIBLE_DEVICES
+            value: void
+          - name: COMPONENT
+            value: metrics
+          - name: METRICS_PORT
+            value: "8000"
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: nvidia-node-status-exporter
+          ports:
+          - containerPort: 8000
+            name: node-status
+            protocol: TCP
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia
+            mountPropagation: HostToContainer
+            name: run-nvidia
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        nodeSelector:
+          nvidia.com/gpu.deploy.node-status-exporter: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-node-status-exporter
+        serviceAccountName: nvidia-node-status-exporter
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /run/nvidia
+            type: Directory
+          name: run-nvidia
+        - hostPath:
+            path: /
+            type: ""
+          name: host-root
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+      nvidia.com/last-applied-hash: 1f76eec59d76e067
+    creationTimestamp: "2023-03-01T12:39:18Z"
+    generation: 1
+    labels:
+      app: nvidia-operator-validator
+      app.kubernetes.io/part-of: gpu-operator
+    name: nvidia-operator-validator
+    namespace: redhat-nvidia-gpu-addon
+    ownerReferences:
+    - apiVersion: nvidia.com/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterPolicy
+      name: ocp-gpu-addon
+      uid: eaa7f72e-7226-4afc-8d7e-ca5787b7a154
+    resourceVersion: "973167"
+    uid: 682a9f97-7f3b-4f69-94fc-80aa90d5507a
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: nvidia-operator-validator
+        app.kubernetes.io/part-of: gpu-operator
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: nvidia-operator-validator
+          app.kubernetes.io/part-of: gpu-operator
+      spec:
+        containers:
+        - args:
+          - echo all validations are successful; sleep infinity
+          command:
+          - sh
+          - -c
+          env:
+          - name: WITH_WORKLOAD
+            value: "true"
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /bin/sh
+                - -c
+                - rm -f /run/nvidia/validations/*-ready
+          name: nvidia-operator-validator
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+        dnsPolicy: ClusterFirst
+        initContainers:
+        - args:
+          - nvidia-validator
+          command:
+          - sh
+          - -c
+          env:
+          - name: WITH_WAIT
+            value: "true"
+          - name: COMPONENT
+            value: driver
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: driver-validation
+          resources: {}
+          securityContext:
+            privileged: true
+            seLinuxOptions:
+              level: s0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /host
+            mountPropagation: HostToContainer
+            name: host-root
+            readOnly: true
+          - mountPath: /run/nvidia/driver
+            mountPropagation: HostToContainer
+            name: driver-install-path
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+          - mountPath: /host-dev-char
+            name: host-dev-char
+        - args:
+          - nvidia-validator
+          command:
+          - sh
+          - -c
+          env:
+          - name: WITH_WAIT
+            value: "false"
+          - name: COMPONENT
+            value: toolkit
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: toolkit-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+        - args:
+          - nvidia-validator
+          command:
+          - sh
+          - -c
+          env:
+          - name: WITH_WAIT
+            value: "false"
+          - name: COMPONENT
+            value: cuda
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: OPERATOR_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: VALIDATOR_IMAGE
+            value: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          - name: VALIDATOR_IMAGE_PULL_POLICY
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: cuda-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+        - args:
+          - nvidia-validator
+          command:
+          - sh
+          - -c
+          env:
+          - name: COMPONENT
+            value: plugin
+          - name: WITH_WAIT
+            value: "false"
+          - name: WITH_WORKLOAD
+            value: "true"
+          - name: MIG_STRATEGY
+            value: single
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: OPERATOR_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: VALIDATOR_IMAGE
+            value: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          - name: VALIDATOR_IMAGE_PULL_POLICY
+          image: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+          imagePullPolicy: IfNotPresent
+          name: plugin-validation
+          resources: {}
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/nvidia/validations
+            mountPropagation: Bidirectional
+            name: run-nvidia-validations
+        nodeSelector:
+          nvidia.com/gpu.deploy.operator-validator: "true"
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: nvidia-operator-validator
+        serviceAccountName: nvidia-operator-validator
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: nvidia.com/gpu
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /run/nvidia/validations
+            type: DirectoryOrCreate
+          name: run-nvidia-validations
+        - hostPath:
+            path: /run/nvidia/driver
+            type: ""
+          name: driver-install-path
+        - hostPath:
+            path: /
+            type: ""
+          name: host-root
+        - hostPath:
+            path: /dev/char
+            type: ""
+          name: host-dev-char
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 1
+    desiredNumberScheduled: 1
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    observedGeneration: 1
+    updatedNumberScheduled: 1
+kind: List
+metadata:
+  resourceVersion: ""

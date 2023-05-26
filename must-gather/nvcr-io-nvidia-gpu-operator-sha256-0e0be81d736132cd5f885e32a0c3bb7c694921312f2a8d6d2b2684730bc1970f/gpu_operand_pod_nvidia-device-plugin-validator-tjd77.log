@@ -1,0 +1,7 @@
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] [Vector addition of 50000 elements]
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] Copy input data from the host memory to the CUDA device
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] CUDA kernel launch with 196 blocks of 256 threads
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] Copy output data from the CUDA device to the host memory
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] Test PASSED
+[pod/nvidia-device-plugin-validator-tjd77/plugin-validation] Done
+[pod/nvidia-device-plugin-validator-tjd77/nvidia-device-plugin-validator] device-plugin workload validation is successful

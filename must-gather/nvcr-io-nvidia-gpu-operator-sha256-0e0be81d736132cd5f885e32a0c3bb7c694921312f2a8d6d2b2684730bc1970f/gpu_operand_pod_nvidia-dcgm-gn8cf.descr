@@ -1,0 +1,92 @@
+Name:                 nvidia-dcgm-gn8cf
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-dcgm
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:21 +0000
+Labels:               app=nvidia-dcgm
+                      controller-revision-hash=f47d857cb
+                      pod-template-generation=1
+Annotations:          openshift.io/scc: nvidia-dcgm
+Status:               Running
+IP:                   10.0.193.255
+IPs:
+  IP:           10.0.193.255
+Controlled By:  DaemonSet/nvidia-dcgm
+Init Containers:
+  toolkit-validation:
+    Container ID:  cri-o://5853c9718cebf795cda875b1cf23aa4dd17e857344ec827514801e747d02828d
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:25 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:40 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5x56b (ro)
+Containers:
+  nvidia-dcgm-ctr:
+    Container ID:   cri-o://bada46c71273b1fee4a3247652979f23900b964aeb3ba883ab184041e650b8fc
+    Image:          nvcr.io/nvidia/cloud-native/dcgm@sha256:c3cf59dd5d6160eba5d816ade2e81b35ebb10f4884df67971f6ace36f8e6efc1
+    Image ID:       nvcr.io/nvidia/cloud-native/dcgm@sha256:32ed4b68b8b9ba431db81804e9872d2066dbe82276520afaeb11af2642b6f486
+    Port:           5555/TCP
+    Host Port:      5555/TCP
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:41 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5x56b (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  Directory
+  kube-api-access-5x56b:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.dcgm=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  24m   default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/nvidia-dcgm-gn8cf to ip-10-0-193-255.us-east-2.compute.internal
+  Normal  Pulled     24m   kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created    24m   kubelet            Created container toolkit-validation
+  Normal  Started    24m   kubelet            Started container toolkit-validation
+  Normal  Pulled     23m   kubelet            Container image "nvcr.io/nvidia/cloud-native/dcgm@sha256:c3cf59dd5d6160eba5d816ade2e81b35ebb10f4884df67971f6ace36f8e6efc1" already present on machine
+  Normal  Created    23m   kubelet            Created container nvidia-dcgm-ctr
+  Normal  Started    23m   kubelet            Started container nvidia-dcgm-ctr

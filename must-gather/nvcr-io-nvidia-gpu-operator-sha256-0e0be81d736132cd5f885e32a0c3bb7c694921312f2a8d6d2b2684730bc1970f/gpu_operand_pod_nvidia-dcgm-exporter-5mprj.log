@@ -1,0 +1,28 @@
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Starting dcgm-exporter"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Attemping to connect to remote hostengine at localhost:5555"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="DCGM successfully initialized!"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Collecting DCP Metrics"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="No configmap data specified, falling back to metric file /etc/dcgm-exporter/dcp-metrics-included.csv"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Initializing system entities of type: GPU"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Initializing system entities of type: NvSwitch"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Not collecting switch metrics: no switches to monitor"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Initializing system entities of type: NvLink"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Not collecting link metrics: no switches to monitor"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Kubernetes metrics collection enabled!"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Pipeline starting"
+[pod/nvidia-dcgm-exporter-5mprj/nvidia-dcgm-exporter] time="2023-03-02T16:15:42Z" level=info msg="Starting webserver"

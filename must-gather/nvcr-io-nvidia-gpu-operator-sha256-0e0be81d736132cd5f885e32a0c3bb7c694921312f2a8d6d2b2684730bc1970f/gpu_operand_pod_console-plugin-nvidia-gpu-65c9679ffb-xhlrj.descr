@@ -1,0 +1,94 @@
+Name:             console-plugin-nvidia-gpu-65c9679ffb-xhlrj
+Namespace:        redhat-nvidia-gpu-addon
+Priority:         0
+Service Account:  default
+Node:             ip-10-0-229-111.us-east-2.compute.internal/10.0.229.111
+Start Time:       Wed, 01 Mar 2023 12:38:38 +0000
+Labels:           app=console-plugin-nvidia-gpu
+                  pod-template-hash=65c9679ffb
+Annotations:      k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.43"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  k8s.v1.cni.cncf.io/networks-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.43"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  openshift.io/scc: restricted
+Status:           Running
+IP:               10.131.0.43
+IPs:
+  IP:           10.131.0.43
+Controlled By:  ReplicaSet/console-plugin-nvidia-gpu-65c9679ffb
+Containers:
+  console-plugin-nvidia-gpu:
+    Container ID:   cri-o://caec8602ed23e4a33fa9f8f5dba42e77e8d3d1d200edaaff9dcfd800c70c5dcf
+    Image:          quay.io/edge-infrastructure/console-plugin-nvidia-gpu@sha256:3aee994ea1bb111b75bd40c5ce5ee9109591e9f14f09ead07ecb507b3f07e93e
+    Image ID:       quay.io/edge-infrastructure/console-plugin-nvidia-gpu@sha256:3aee994ea1bb111b75bd40c5ce5ee9109591e9f14f09ead07ecb507b3f07e93e
+    Port:           9443/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:13:58 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     20m
+      memory:  200Mi
+    Requests:
+      cpu:        10m
+      memory:     100Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhn4k (ro)
+      /var/serving-cert from plugin-serving-cert (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  plugin-serving-cert:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  plugin-serving-cert
+    Optional:    false
+  nginx-conf:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      nginx-conf
+    Optional:  false
+  kube-api-access-vhn4k:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age   From             Message
+  ----     ------                  ----  ----             -------
+  Warning  NodeNotReady            26m   node-controller  Node is not ready
+  Normal   AddedInterface          25m   multus           Add eth0 [10.131.0.37/23] from openshift-sdn
+  Warning  FailedCreatePodSandBox  25m   kubelet          Failed to create pod sandbox: rpc error: code = Unknown desc = failed to create pod network sandbox k8s_console-plugin-nvidia-gpu-65c9679ffb-xhlrj_redhat-nvidia-gpu-addon_98e51768-2d8f-469e-9a29-fc8738afe1a1_0(5dc23125e75833d0d3e2f91612f74a3206c1b1c0361e98d7e5bf8988151b86a6): error adding pod redhat-nvidia-gpu-addon_console-plugin-nvidia-gpu-65c9679ffb-xhlrj to CNI network "multus-cni-network": plugin type="multus" name="multus-cni-network" failed (add):
+  Normal   AddedInterface          25m   multus           Add eth0 [10.131.0.43/23] from openshift-sdn
+  Normal   Pulling                 25m   kubelet          Pulling image "quay.io/edge-infrastructure/console-plugin-nvidia-gpu@sha256:3aee994ea1bb111b75bd40c5ce5ee9109591e9f14f09ead07ecb507b3f07e93e"
+  Normal   Pulled                  25m   kubelet          Successfully pulled image "quay.io/edge-infrastructure/console-plugin-nvidia-gpu@sha256:3aee994ea1bb111b75bd40c5ce5ee9109591e9f14f09ead07ecb507b3f07e93e" in 629.542166ms
+  Normal   Created                 25m   kubelet          Created container console-plugin-nvidia-gpu
+  Normal   Started                 25m   kubelet          Started container console-plugin-nvidia-gpu

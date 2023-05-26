@@ -1,0 +1,373 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "nvidia.com/v1",
+          "kind": "ClusterPolicy",
+          "metadata": {
+            "name": "gpu-cluster-policy"
+          },
+          "spec": {
+            "operator": {
+              "defaultRuntime": "crio",
+              "use_ocp_driver_toolkit": true,
+              "initContainer": {
+              }
+            },
+            "sandboxWorkloads": {
+              "enabled": false,
+              "defaultWorkload": "container"
+            },
+            "driver": {
+              "enabled": true,
+              "upgradePolicy": {
+                "autoUpgrade": true,
+                "drain": {
+                  "deleteEmptyDir": false,
+                  "enable": false,
+                  "force": false,
+                  "timeoutSeconds": 300
+                },
+                "maxParallelUpgrades": 1,
+                "podDeletion": {
+                  "deleteEmptyDir": false,
+                  "force": false,
+                  "timeoutSeconds": 300
+                },
+                "waitForCompletion": {
+                  "timeoutSeconds": 0
+                }
+              },
+              "repoConfig": {
+                "configMapName": ""
+              },
+              "certConfig": {
+                "name": ""
+              },
+              "licensingConfig": {
+                "nlsEnabled": false,
+                "configMapName": ""
+              },
+              "virtualTopology": {
+                "config": ""
+              },
+              "kernelModuleConfig": {
+                "name": ""
+              }
+            },
+            "dcgmExporter": {
+              "enabled": true,
+              "config": {
+                "name": ""
+              },
+              "serviceMonitor": {
+                "enabled": true
+              }
+            },
+            "dcgm": {
+              "enabled": true
+            },
+            "daemonsets": {
+              "updateStrategy": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": "1"
+              }
+            },
+            "devicePlugin": {
+              "enabled": true,
+              "config": {
+                "name": "",
+                "default": ""
+              }
+            },
+            "gfd": {
+              "enabled": true
+            },
+            "migManager": {
+              "enabled": true
+            },
+            "nodeStatusExporter": {
+              "enabled": true
+            },
+            "mig": {
+              "strategy": "single"
+            },
+            "toolkit": {
+              "enabled": true
+            },
+            "validator": {
+              "plugin": {
+                "env": [
+                  {
+                    "name": "WITH_WORKLOAD",
+                    "value": "true"
+                  }
+                ]
+              }
+            },
+            "vgpuManager": {
+              "enabled": false
+            },
+            "vgpuDeviceManager": {
+              "enabled": true
+            },
+            "sandboxDevicePlugin": {
+              "enabled": true
+            },
+            "vfioManager": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    capabilities: Basic Install
+    categories: AI/Machine Learning, OpenShift Optional
+    certified: "true"
+    containerImage: nvcr.io/nvidia/gpu-operator@sha256:54d5846c0291db621931a8544c9cb6437512470a93278ca9130ba73f2e2f0055
+    createdAt: Mon Jan 30 15:43:24 PST 2023
+    description: Automate the management and monitoring of NVIDIA GPUs.
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.131.0.46"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.131.0.46"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    olm.operatorGroup: redhat-layered-product-og
+    olm.operatorNamespace: redhat-nvidia-gpu-addon
+    olm.skipRange: '>=1.9.0 <22.9.2'
+    olm.targetNamespaces: redhat-nvidia-gpu-addon
+    openshift.io/scc: hostmount-anyuid
+    operatorframework.io/properties: '{"properties":[{"type":"olm.package","value":{"packageName":"gpu-operator-certified","version":"22.9.2"}},{"type":"olm.gvk","value":{"group":"nvidia.com","kind":"ClusterPolicy","version":"v1"}}]}'
+    operatorframework.io/suggested-namespace: nvidia-gpu-operator
+    operators.openshift.io/infrastructure-features: '["Disconnected"]'
+    operators.operatorframework.io/builder: operator-sdk-v1.4.0
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+    provider: NVIDIA
+    repository: http://github.com/NVIDIA/gpu-operator
+    support: NVIDIA
+  creationTimestamp: "2023-03-01T12:38:34Z"
+  generateName: gpu-operator-b4f74c8cf-
+  labels:
+    app: gpu-operator
+    app.kubernetes.io/component: gpu-operator
+    nvidia.com/gpu-driver-upgrade-drain.skip: "true"
+    pod-template-hash: b4f74c8cf
+  name: gpu-operator-b4f74c8cf-vz6lr
+  namespace: redhat-nvidia-gpu-addon
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: gpu-operator-b4f74c8cf
+    uid: 47740b51-dbdf-46a5-9c6c-cc90d5c52ec3
+  resourceVersion: "968598"
+  uid: 51f7aaf4-9125-4d2f-8493-f12a2e47cd64
+spec:
+  containers:
+  - args:
+    - --leader-elect
+    - --leader-lease-renew-deadline
+    - 60s
+    command:
+    - gpu-operator
+    env:
+    - name: OPERATOR_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: VALIDATOR_IMAGE
+      value: nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    - name: GFD_IMAGE
+      value: nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d
+    - name: CONTAINER_TOOLKIT_IMAGE
+      value: nvcr.io/nvidia/k8s/container-toolkit@sha256:efb88937f73434994d1bbadc87b492a1df047aa9f8d6e9f5ec3b09536e6e7691
+    - name: DCGM_IMAGE
+      value: nvcr.io/nvidia/cloud-native/dcgm@sha256:c3cf59dd5d6160eba5d816ade2e81b35ebb10f4884df67971f6ace36f8e6efc1
+    - name: DCGM_EXPORTER_IMAGE
+      value: nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d
+    - name: DEVICE_PLUGIN_IMAGE
+      value: nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3
+    - name: DRIVER_IMAGE
+      value: nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925
+    - name: DRIVER_IMAGE-515
+      value: nvcr.io/nvidia/driver@sha256:f250d1e4989fd4821e81bad9227eeeaa531ca8810f3a40e996f1ca2af7945f96
+    - name: DRIVER_IMAGE-510
+      value: nvcr.io/nvidia/driver@sha256:f2ca4612f3418e0e3963be8c3771ffe463cdc1fc1b810437a3aad9d76bb6499d
+    - name: DRIVER_IMAGE-470
+      value: nvcr.io/nvidia/driver@sha256:c5a62bc2a6cce339798e4b7cf9cec47e289c2d30b40f451ba8c9e958a68e3e55
+    - name: DRIVER_IMAGE-450
+      value: nvcr.io/nvidia/driver@sha256:b860ef04cc6cd8c481810fa19bef7221071f5a3862640b2ad6c2704728dc77c8
+    - name: DRIVER_MANAGER_IMAGE
+      value: nvcr.io/nvidia/cloud-native/k8s-driver-manager@sha256:9177a0ae30798b42d0387f6a20cd3ce3cd1799a91b7866bf812368764b05b1af
+    - name: MIG_MANAGER_IMAGE
+      value: nvcr.io/nvidia/cloud-native/k8s-mig-manager@sha256:50c2a2b998e467c82716efa79fe136aa6f7ea95fd23576cf384d251bb9628640
+    - name: CUDA_BASE_IMAGE
+      value: nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d
+    - name: VFIO_MANAGER_IMAGE
+      value: nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d
+    - name: SANDBOX_DEVICE_PLUGIN_IMAGE
+      value: nvcr.io/nvidia/kubevirt-gpu-device-plugin@sha256:0d47dad29d2ef445b301c5c64717758eed43a606345b79f97bce2e64b40a91a8
+    - name: VGPU_DEVICE_MANAGER_IMAGE
+      value: nvcr.io/nvidia/cloud-native/vgpu-device-manager@sha256:64d757b4c80b910e64647a84a1d592fab2ea3313ff6dce30c25c3a08e180bd74
+    - name: OPERATOR_CONDITION_NAME
+      value: gpu-operator-certified.v22.9.2
+    image: nvcr.io/nvidia/gpu-operator@sha256:54d5846c0291db621931a8544c9cb6437512470a93278ca9130ba73f2e2f0055
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: 8081
+        scheme: HTTP
+      initialDelaySeconds: 15
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: gpu-operator
+    ports:
+    - containerPort: 8080
+      name: metrics
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /readyz
+        port: 8081
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 200m
+        memory: 200Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - MKNOD
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /host-etc/os-release
+      name: host-os-release
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-dc5wm
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: gpu-operator-dockercfg-glqjq
+  nodeName: ip-10-0-229-111.us-east-2.compute.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 2000001000
+  priorityClassName: system-node-critical
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    seLinuxOptions:
+      level: s0:c32,c24
+  serviceAccount: gpu-operator
+  serviceAccountName: gpu-operator
+  terminationGracePeriodSeconds: 10
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - hostPath:
+      path: /etc/os-release
+      type: ""
+    name: host-os-release
+  - name: kube-api-access-dc5wm
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+      - configMap:
+          items:
+          - key: service-ca.crt
+            path: service-ca.crt
+          name: openshift-service-ca.crt
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-03-01T12:38:34Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-03-02T16:14:25Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-03-02T16:14:25Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-03-01T12:38:34Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: cri-o://8b951f6fe991c89689f379c7579176cbdec854e456c5b6433e1015548b74d824
+    image: nvcr.io/nvidia/gpu-operator@sha256:54d5846c0291db621931a8544c9cb6437512470a93278ca9130ba73f2e2f0055
+    imageID: nvcr.io/nvidia/gpu-operator@sha256:0e0be81d736132cd5f885e32a0c3bb7c694921312f2a8d6d2b2684730bc1970f
+    lastState: {}
+    name: gpu-operator
+    ready: true
+    restartCount: 1
+    started: true
+    state:
+      running:
+        startedAt: "2023-03-02T16:13:59Z"
+  hostIP: 10.0.229.111
+  phase: Running
+  podIP: 10.131.0.46
+  podIPs:
+  - ip: 10.131.0.46
+  qosClass: Burstable
+  startTime: "2023-03-01T12:38:34Z"

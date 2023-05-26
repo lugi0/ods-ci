@@ -1,0 +1,3 @@
+[pod/addon-nvidia-gpu-addon-catalog-9dqnx/registry-server] time="2023-03-02T16:14:13Z" level=warning msg="\x1b[1;33mDEPRECATION NOTICE:\nSqlite-based catalogs and their related subcommands are deprecated. Support for\nthem will be removed in a future release. Please migrate your catalog workflows\nto the new file-based catalog format.\x1b[0m"
+[pod/addon-nvidia-gpu-addon-catalog-9dqnx/registry-server] time="2023-03-02T16:14:13Z" level=info msg="Keeping server open for infinite seconds" database=/database/index.db port=50051
+[pod/addon-nvidia-gpu-addon-catalog-9dqnx/registry-server] time="2023-03-02T16:14:13Z" level=info msg="serving registry" database=/database/index.db port=50051

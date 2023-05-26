@@ -1,0 +1,131 @@
+Name:                 nvidia-device-plugin-daemonset-vcdf5
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-device-plugin
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:22 +0000
+Labels:               app=nvidia-device-plugin-daemonset
+                      controller-revision-hash=84b477d858
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.15"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.15"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: privileged
+Status:               Running
+IP:                   10.131.2.15
+IPs:
+  IP:           10.131.2.15
+Controlled By:  DaemonSet/nvidia-device-plugin-daemonset
+Init Containers:
+  toolkit-validation:
+    Container ID:  cri-o://af08b676bd435807185c4c97d01af6c05728264dacb6a3c8b1ef927341a88c09
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:25 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:40 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qsrmp (ro)
+Containers:
+  nvidia-device-plugin:
+    Container ID:  cri-o://849a60d801014b54355baac5a650d8c06d6d69fffdec7efa65b12380f0bee83a
+    Image:         nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3
+    Image ID:      nvcr.io/nvidia/k8s-device-plugin@sha256:3eff6b814aa67f4cab2776e8333a8d94dbee8d55d715244cf444329848cdffcb
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      bash
+      -c
+    Args:
+      [[ -f /run/nvidia/validations/host-driver-ready ]] && driver_root=/ || driver_root=/run/nvidia/driver; export NVIDIA_DRIVER_ROOT=$driver_root; exec nvidia-device-plugin;
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:41 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      PASS_DEVICE_SPECS:           true
+      FAIL_ON_INIT_ERROR:          true
+      DEVICE_LIST_STRATEGY:        envvar
+      DEVICE_ID_STRATEGY:          uuid
+      NVIDIA_VISIBLE_DEVICES:      all
+      NVIDIA_DRIVER_CAPABILITIES:  all
+      MIG_STRATEGY:                single
+      NVIDIA_MIG_MONITOR_DEVICES:  all
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/lib/kubelet/device-plugins from device-plugin (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qsrmp (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  device-plugin:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/kubelet/device-plugins
+    HostPathType:  
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  Directory
+  kube-api-access-qsrmp:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.device-plugin=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       24m   default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/nvidia-device-plugin-daemonset-vcdf5 to ip-10-0-193-255.us-east-2.compute.internal
+  Normal  AddedInterface  24m   multus             Add eth0 [10.131.2.15/23] from openshift-sdn
+  Normal  Pulled          24m   kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created         24m   kubelet            Created container toolkit-validation
+  Normal  Started         24m   kubelet            Started container toolkit-validation
+  Normal  Pulled          23m   kubelet            Container image "nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3" already present on machine
+  Normal  Created         23m   kubelet            Created container nvidia-device-plugin
+  Normal  Started         23m   kubelet            Started container nvidia-device-plugin

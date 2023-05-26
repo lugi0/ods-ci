@@ -1,0 +1,60 @@
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Starting FS watcher.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Starting OS watcher.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Starting Plugins.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Loading configuration.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Updating config with default resource matching patterns.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] Running with config:
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   "version": "v1",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   "flags": {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "migStrategy": "single",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "failOnInitError": true,
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "nvidiaDriverRoot": "/run/nvidia/driver",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "gdsEnabled": false,
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "mofedEnabled": false,
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "plugin": {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       "passDeviceSpecs": true,
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       "deviceListStrategy": "envvar",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       "deviceIDStrategy": "uuid"
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     }
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   },
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   "resources": {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "gpus": [
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]         "pattern": "*",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]         "name": "nvidia.com/gpu"
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       }
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     ],
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "mig": [
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]         "pattern": "*",
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]         "name": "nvidia.com/gpu"
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]       }
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     ]
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   },
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   "sharing": {
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]     "timeSlicing": {}
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin]   }
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] }
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Retreiving plugins.
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Detected NVML platform: found NVML library
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Detected non-Tegra platform: /sys/devices/soc0/family file not found
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Starting GRPC server for 'nvidia.com/gpu'
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Starting to serve 'nvidia.com/gpu' on /var/lib/kubelet/device-plugins/nvidia-gpu.sock
+[pod/nvidia-device-plugin-daemonset-vcdf5/nvidia-device-plugin] 2023/03/02 16:15:41 Registered device plugin for 'nvidia.com/gpu' with Kubelet

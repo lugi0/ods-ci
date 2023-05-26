@@ -1,0 +1,62 @@
+Name:           gpu-feature-discovery
+Selector:       app=gpu-feature-discovery,app.kubernetes.io/part-of=nvidia-gpu
+Node-Selector:  nvidia.com/gpu.deploy.gpu-feature-discovery=true
+Labels:         app=gpu-feature-discovery
+                app.kubernetes.io/part-of=nvidia-gpu
+Annotations:    deprecated.daemonset.template.generation: 1
+                nvidia.com/last-applied-hash: 2d636b09e9e54907
+Desired Number of Nodes Scheduled: 1
+Current Number of Nodes Scheduled: 1
+Number of Nodes Scheduled with Up-to-date Pods: 1
+Number of Nodes Scheduled with Available Pods: 1
+Number of Nodes Misscheduled: 0
+Pods Status:  1 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app=gpu-feature-discovery
+                    app.kubernetes.io/part-of=nvidia-gpu
+  Service Account:  nvidia-gpu-feature-discovery
+  Init Containers:
+   toolkit-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    Environment:  <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+  Containers:
+   gpu-feature-discovery:
+    Image:      nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d
+    Port:       <none>
+    Host Port:  <none>
+    Environment:
+      GFD_SLEEP_INTERVAL:          60s
+      GFD_FAIL_ON_INIT_ERROR:      true
+      MIG_STRATEGY:                single
+      NVIDIA_MIG_MONITOR_DEVICES:  all
+    Mounts:
+      /etc/kubernetes/node-feature-discovery/features.d from output-dir (rw)
+      /sys/class/dmi/id/product_name from dmi-product-name (rw)
+  Volumes:
+   output-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/node-feature-discovery/features.d
+    HostPathType:  
+   dmi-product-name:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/class/dmi/id/product_name
+    HostPathType:  
+   run-nvidia:
+    Type:               HostPath (bare host directory volume)
+    Path:               /run/nvidia
+    HostPathType:       Directory
+  Priority Class Name:  system-node-critical
+Events:
+  Type    Reason            Age   From                  Message
+  ----    ------            ----  ----                  -------
+  Normal  SuccessfulDelete  25m   daemonset-controller  Deleted pod: gpu-feature-discovery-g78bz
+  Normal  SuccessfulCreate  24m   daemonset-controller  Created pod: gpu-feature-discovery-pb6lc

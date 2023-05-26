@@ -1,0 +1,472 @@
++ [[ /usr/bin/gather == \/\u\s\r\/\b\i\n\/\g\a\t\h\e\r ]]
++ echo 'NVIDIA GPU Operator'
++ echo 94874934
+++ kubectl get clusterversion/version --ignore-not-found -oname
++ ocp_cluster=clusterversion.config.openshift.io/version
++ [[ -n clusterversion.config.openshift.io/version ]]
++ echo 'Running in OpenShift.'
++ echo 'Get the cluster version'
++ kubectl get clusterversion/version -oyaml
++ echo 'Get the operator namespaces'
+++ kubectl get pods -lapp=gpu-operator -oname -A
++ OPERATOR_POD_NAME=pod/gpu-operator-b4f74c8cf-vz6lr
++ '[' -z pod/gpu-operator-b4f74c8cf-vz6lr ']'
+++ kubectl get pods -lapp=gpu-operator -A '-ojsonpath={.items[].metadata.namespace}' --ignore-not-found
++ OPERATOR_NAMESPACE=redhat-nvidia-gpu-addon
+++ kubectl get pods -lapp=nvidia-device-plugin-daemonset -A '-ojsonpath={.items[].metadata.namespace}' --ignore-not-found
++ OPERAND_NAMESPACE=redhat-nvidia-gpu-addon
++ '[' -z redhat-nvidia-gpu-addon ']'
++ echo 'Using '\''redhat-nvidia-gpu-addon'\'' as operator namespace'
++ echo 'Using '\''redhat-nvidia-gpu-addon'\'' as operand namespace'
++ echo ''
++ echo '#'
++ echo '# ClusterPolicy'
++ echo '#'
++ echo
+++ kubectl get clusterpolicy -oname
++ CLUSTER_POLICY_NAME=clusterpolicy.nvidia.com/ocp-gpu-addon
++ [[ -n clusterpolicy.nvidia.com/ocp-gpu-addon ]]
++ echo 'Get clusterpolicy.nvidia.com/ocp-gpu-addon'
++ kubectl get -oyaml clusterpolicy.nvidia.com/ocp-gpu-addon
++ echo
++ echo '#'
++ echo '# Nodes and machines'
++ echo '#'
++ echo
++ '[' clusterversion.config.openshift.io/version ']'
++ echo 'Get all the machines'
++ kubectl get machines -A
++ echo 'Get the labels of the nodes with NVIDIA PCI cards'
++ GPU_PCI_LABELS=(feature.node.kubernetes.io/pci-10de.present feature.node.kubernetes.io/pci-0302_10de.present feature.node.kubernetes.io/pci-0300_10de.present)
++ gpu_pci_nodes=
++ for label in ${GPU_PCI_LABELS[@]}
+++ kubectl get nodes -lfeature.node.kubernetes.io/pci-10de.present -oname
++ gpu_pci_nodes=' node/ip-10-0-193-255.us-east-2.compute.internal'
++ for label in ${GPU_PCI_LABELS[@]}
+++ kubectl get nodes -lfeature.node.kubernetes.io/pci-0302_10de.present -oname
++ gpu_pci_nodes=' node/ip-10-0-193-255.us-east-2.compute.internal '
++ for label in ${GPU_PCI_LABELS[@]}
+++ kubectl get nodes -lfeature.node.kubernetes.io/pci-0300_10de.present -oname
++ gpu_pci_nodes=' node/ip-10-0-193-255.us-east-2.compute.internal  '
++ '[' -z ' node/ip-10-0-193-255.us-east-2.compute.internal  ' ']'
+++ echo ' node/ip-10-0-193-255.us-east-2.compute.internal  '
++ for node in $(echo "$gpu_pci_nodes")
++ echo node/ip-10-0-193-255.us-east-2.compute.internal
++ cut -d/ -f2
++ kubectl get node/ip-10-0-193-255.us-east-2.compute.internal '-ojsonpath={.metadata.labels}'
++ sed 's|,|,- |g'
++ tr , '\n'
++ sed 's/{"/- /'
++ tr : =
++ sed 's/"//g'
++ sed 's/}/\n/'
++ echo ''
++ echo 'Get the GPU nodes (status)'
++ kubectl get nodes -l nvidia.com/gpu.present=true
++ echo 'Get the GPU nodes (description)'
++ kubectl describe nodes -l nvidia.com/gpu.present=true
++ echo ''
++ echo '#'
++ echo '# Operator Pod'
++ echo '#'
++ echo
++ echo 'Get the GPU Operator Pod (status)'
++ kubectl get pod/gpu-operator-b4f74c8cf-vz6lr -owide -n redhat-nvidia-gpu-addon
++ echo 'Get the GPU Operator Pod (yaml)'
++ kubectl get pod/gpu-operator-b4f74c8cf-vz6lr -oyaml -n redhat-nvidia-gpu-addon
++ echo 'Get the GPU Operator Pod logs'
++ kubectl logs pod/gpu-operator-b4f74c8cf-vz6lr -n redhat-nvidia-gpu-addon
++ kubectl logs pod/gpu-operator-b4f74c8cf-vz6lr -n redhat-nvidia-gpu-addon --previous
+Error from server (BadRequest): previous terminated container "gpu-operator" in pod "gpu-operator-b4f74c8cf-vz6lr" not found
++ '[' -z redhat-nvidia-gpu-addon ']'
++ echo ''
++ echo '#'
++ echo '# Operand Pods'
++ echo '#'
++ echo ''
++ echo 'Get the Pods in redhat-nvidia-gpu-addon (status)'
++ kubectl get pods -owide -n redhat-nvidia-gpu-addon
++ echo 'Get the Pods in redhat-nvidia-gpu-addon (yaml)'
++ kubectl get pods -oyaml -n redhat-nvidia-gpu-addon
++ echo 'Get the GPU Operator Pods Images'
++ kubectl get pods -n redhat-nvidia-gpu-addon '-o=jsonpath={range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{" "}{end}{end}'
++ echo 'Get the description and logs of the GPU Operator Pods'
+++ kubectl get pods -n redhat-nvidia-gpu-addon -oname
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/2f22aa8739212b008c9ce511a0427ff28188a7d69a3250b81b929402994j65r -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/2f22aa8739212b008c9ce511a0427ff28188a7d69a3250b81b929402994j65r, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/5f5a51d644d1e13b2c35cb24e878d2a680f2003d88d73eb24c15ae65248d7hr -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/5f5a51d644d1e13b2c35cb24e878d2a680f2003d88d73eb24c15ae65248d7hr, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/addon-nvidia-gpu-addon-catalog-9dqnx -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/addon-nvidia-gpu-addon-catalog-9dqnx
+++ cut -d/ -f2
++ pod_name=addon-nvidia-gpu-addon-catalog-9dqnx
++ '[' pod/addon-nvidia-gpu-addon-catalog-9dqnx == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/addon-nvidia-gpu-addon-catalog-9dqnx -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/addon-nvidia-gpu-addon-catalog-9dqnx -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "registry-server" in pod "addon-nvidia-gpu-addon-catalog-9dqnx" not found
++ kubectl describe pod/addon-nvidia-gpu-addon-catalog-9dqnx -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/alertmanager-gpuaddon-alertmanager-0 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/alertmanager-gpuaddon-alertmanager-0
+++ cut -d/ -f2
++ pod_name=alertmanager-gpuaddon-alertmanager-0
++ '[' pod/alertmanager-gpuaddon-alertmanager-0 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-0 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-0 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "alertmanager" in pod "alertmanager-gpuaddon-alertmanager-0" not found
++ kubectl describe pod/alertmanager-gpuaddon-alertmanager-0 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/alertmanager-gpuaddon-alertmanager-1 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/alertmanager-gpuaddon-alertmanager-1
+++ cut -d/ -f2
++ pod_name=alertmanager-gpuaddon-alertmanager-1
++ '[' pod/alertmanager-gpuaddon-alertmanager-1 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-1 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-1 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "alertmanager" in pod "alertmanager-gpuaddon-alertmanager-1" not found
++ kubectl describe pod/alertmanager-gpuaddon-alertmanager-1 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/alertmanager-gpuaddon-alertmanager-2 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/alertmanager-gpuaddon-alertmanager-2
+++ cut -d/ -f2
++ pod_name=alertmanager-gpuaddon-alertmanager-2
++ '[' pod/alertmanager-gpuaddon-alertmanager-2 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-2 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/alertmanager-gpuaddon-alertmanager-2 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "config-reloader" in pod "alertmanager-gpuaddon-alertmanager-2" not found
++ kubectl describe pod/alertmanager-gpuaddon-alertmanager-2 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj
+++ cut -d/ -f2
++ pod_name=console-plugin-nvidia-gpu-65c9679ffb-xhlrj
++ '[' pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "console-plugin-nvidia-gpu" in pod "console-plugin-nvidia-gpu-65c9679ffb-xhlrj" not found
++ kubectl describe pod/console-plugin-nvidia-gpu-65c9679ffb-xhlrj -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/controller-manager-6c88c48689-tdzm8 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/controller-manager-6c88c48689-tdzm8, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/d4c3b85e112da75dcb84fe52e18e7caceab09876e985e083c8905e46dawsfwk -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/d4c3b85e112da75dcb84fe52e18e7caceab09876e985e083c8905e46dawsfwk, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/df7f4da7d2f12435b906c21f643c01e07d357cf810f29a05483546554f69b4f -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/df7f4da7d2f12435b906c21f643c01e07d357cf810f29a05483546554f69b4f, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/gpu-feature-discovery-pb6lc -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/gpu-feature-discovery-pb6lc
+++ cut -d/ -f2
++ pod_name=gpu-feature-discovery-pb6lc
++ '[' pod/gpu-feature-discovery-pb6lc == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/gpu-feature-discovery-pb6lc -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/gpu-feature-discovery-pb6lc -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "toolkit-validation" in pod "gpu-feature-discovery-pb6lc" not found
++ kubectl describe pod/gpu-feature-discovery-pb6lc -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/gpu-operator-b4f74c8cf-vz6lr -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/gpu-operator-b4f74c8cf-vz6lr
+++ cut -d/ -f2
++ pod_name=gpu-operator-b4f74c8cf-vz6lr
++ '[' pod/gpu-operator-b4f74c8cf-vz6lr == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ echo 'Skipping operator pod gpu-operator-b4f74c8cf-vz6lr ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-controller-manager-59c56864f9-fbhk8 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-controller-manager-59c56864f9-fbhk8, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-master-lqnlt -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-master-lqnlt, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-master-qhqxn -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-master-qhqxn, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-master-z5tpb -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-master-z5tpb, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-worker-58jk2 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-worker-58jk2, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-worker-9nq2l -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-worker-9nq2l, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-worker-qp4lx -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-worker-qp4lx, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-worker-sztb7 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-worker-sztb7, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nfd-worker-vj44c -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/nfd-worker-vj44c, not a NVIDA/GPU Pod ...'
++ continue
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-container-toolkit-daemonset-fxdlr -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-container-toolkit-daemonset-fxdlr
+++ cut -d/ -f2
++ pod_name=nvidia-container-toolkit-daemonset-fxdlr
++ '[' pod/nvidia-container-toolkit-daemonset-fxdlr == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-container-toolkit-daemonset-fxdlr -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-container-toolkit-daemonset-fxdlr -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "driver-validation" in pod "nvidia-container-toolkit-daemonset-fxdlr" not found
++ kubectl describe pod/nvidia-container-toolkit-daemonset-fxdlr -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-cuda-validator-hv9nq -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-cuda-validator-hv9nq
+++ cut -d/ -f2
++ pod_name=nvidia-cuda-validator-hv9nq
++ '[' pod/nvidia-cuda-validator-hv9nq == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-cuda-validator-hv9nq -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-cuda-validator-hv9nq -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "cuda-validation" in pod "nvidia-cuda-validator-hv9nq" not found
++ kubectl describe pod/nvidia-cuda-validator-hv9nq -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-dcgm-exporter-5mprj -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-dcgm-exporter-5mprj
+++ cut -d/ -f2
++ pod_name=nvidia-dcgm-exporter-5mprj
++ '[' pod/nvidia-dcgm-exporter-5mprj == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-dcgm-exporter-5mprj -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-dcgm-exporter-5mprj -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "toolkit-validation" in pod "nvidia-dcgm-exporter-5mprj" not found
++ kubectl describe pod/nvidia-dcgm-exporter-5mprj -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-dcgm-gn8cf -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-dcgm-gn8cf
+++ cut -d/ -f2
++ pod_name=nvidia-dcgm-gn8cf
++ '[' pod/nvidia-dcgm-gn8cf == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-dcgm-gn8cf -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-dcgm-gn8cf -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "toolkit-validation" in pod "nvidia-dcgm-gn8cf" not found
++ kubectl describe pod/nvidia-dcgm-gn8cf -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-device-plugin-daemonset-vcdf5 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-device-plugin-daemonset-vcdf5
+++ cut -d/ -f2
++ pod_name=nvidia-device-plugin-daemonset-vcdf5
++ '[' pod/nvidia-device-plugin-daemonset-vcdf5 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-device-plugin-daemonset-vcdf5 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-device-plugin-daemonset-vcdf5 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "toolkit-validation" in pod "nvidia-device-plugin-daemonset-vcdf5" not found
++ kubectl describe pod/nvidia-device-plugin-daemonset-vcdf5 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-device-plugin-validator-tjd77 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-device-plugin-validator-tjd77
+++ cut -d/ -f2
++ pod_name=nvidia-device-plugin-validator-tjd77
++ '[' pod/nvidia-device-plugin-validator-tjd77 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-device-plugin-validator-tjd77 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-device-plugin-validator-tjd77 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "plugin-validation" in pod "nvidia-device-plugin-validator-tjd77" not found
++ kubectl describe pod/nvidia-device-plugin-validator-tjd77 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq
+++ cut -d/ -f2
++ pod_name=nvidia-driver-daemonset-410.84.202302080019-0-4h2pq
++ '[' pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "k8s-driver-manager" in pod "nvidia-driver-daemonset-410.84.202302080019-0-4h2pq" not found
++ kubectl describe pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-node-status-exporter-qxfw2 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-node-status-exporter-qxfw2
+++ cut -d/ -f2
++ pod_name=nvidia-node-status-exporter-qxfw2
++ '[' pod/nvidia-node-status-exporter-qxfw2 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-node-status-exporter-qxfw2 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-node-status-exporter-qxfw2 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "nvidia-node-status-exporter" in pod "nvidia-node-status-exporter-qxfw2" not found
++ kubectl describe pod/nvidia-node-status-exporter-qxfw2 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/nvidia-operator-validator-knv7n -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
+++ echo pod/nvidia-operator-validator-knv7n
+++ cut -d/ -f2
++ pod_name=nvidia-operator-validator-knv7n
++ '[' pod/nvidia-operator-validator-knv7n == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/nvidia-operator-validator-knv7n -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/nvidia-operator-validator-knv7n -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "driver-validation" in pod "nvidia-operator-validator-knv7n" not found
++ kubectl describe pod/nvidia-operator-validator-knv7n -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ egrep --quiet '(nvidia|gpu)'
++ kubectl get pod/prometheus-gpuaddon-prometheus-0 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
+++ echo pod/prometheus-gpuaddon-prometheus-0
+++ cut -d/ -f2
++ pod_name=prometheus-gpuaddon-prometheus-0
++ '[' pod/prometheus-gpuaddon-prometheus-0 == pod/gpu-operator-b4f74c8cf-vz6lr ']'
++ kubectl logs pod/prometheus-gpuaddon-prometheus-0 -n redhat-nvidia-gpu-addon --all-containers --prefix
++ kubectl logs pod/prometheus-gpuaddon-prometheus-0 -n redhat-nvidia-gpu-addon --all-containers --prefix --previous
+Error from server (BadRequest): previous terminated container "init-config-reloader" in pod "prometheus-gpuaddon-prometheus-0" not found
++ kubectl describe pod/prometheus-gpuaddon-prometheus-0 -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -n $OPERAND_NAMESPACE -oname)
++ kubectl get pod/prometheus-operator-7d5889b6-82hxl -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping pod/prometheus-operator-7d5889b6-82hxl, not a NVIDA/GPU Pod ...'
++ continue
++ echo ''
++ echo '#'
++ echo '# Operand DaemonSets'
++ echo '#'
++ echo ''
++ echo 'Get the DaemonSets in redhat-nvidia-gpu-addon (status)'
++ kubectl get ds -n redhat-nvidia-gpu-addon
++ echo 'Get the DaemonSets in redhat-nvidia-gpu-addon (yaml)'
++ kubectl get ds -oyaml -n redhat-nvidia-gpu-addon
++ echo 'Get the description of the GPU Operator DaemonSets'
+++ kubectl get ds -n redhat-nvidia-gpu-addon -oname
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/gpu-feature-discovery -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/gpu-feature-discovery -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/gpu-feature-discovery
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nfd-master -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping daemonset.apps/nfd-master, not a NVIDA/GPU DaemonSet ...'
++ continue
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nfd-worker -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ echo 'Skipping daemonset.apps/nfd-worker, not a NVIDA/GPU DaemonSet ...'
++ continue
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-container-toolkit-daemonset -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-container-toolkit-daemonset -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-container-toolkit-daemonset
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-dcgm -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-dcgm -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-dcgm
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-dcgm-exporter -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-dcgm-exporter -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-dcgm-exporter
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-device-plugin-daemonset -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-device-plugin-daemonset -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-device-plugin-daemonset
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-driver-daemonset-410.84.202302080019-0 -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-driver-daemonset-410.84.202302080019-0 -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-driver-daemonset-410.84.202302080019-0
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-mig-manager -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-mig-manager -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-mig-manager
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-node-status-exporter -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-node-status-exporter -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-node-status-exporter
+++ cut -d/ -f2
++ for ds in $($K get ds -n $OPERAND_NAMESPACE -oname)
++ kubectl get daemonset.apps/nvidia-operator-validator -n redhat-nvidia-gpu-addon '-ojsonpath={.metadata.labels}'
++ egrep --quiet '(nvidia|gpu)'
++ kubectl describe daemonset.apps/nvidia-operator-validator -n redhat-nvidia-gpu-addon
+++ echo daemonset.apps/nvidia-operator-validator
+++ cut -d/ -f2
++ echo ''
++ echo '#'
++ echo '# nvidia-bug-report.sh'
++ echo '#'
++ echo ''
+++ kubectl get pods -lopenshift.driver-toolkit -oname -n redhat-nvidia-gpu-addon
+++ kubectl get pods -lapp=nvidia-driver-daemonset -oname -n redhat-nvidia-gpu-addon
++ for pod in $($K get pods -lopenshift.driver-toolkit -oname -n $OPERAND_NAMESPACE; $K get pods -lapp=nvidia-driver-daemonset -oname -n $OPERAND_NAMESPACE)
+++ kubectl get pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq '-ojsonpath={.spec.nodeName}' -n redhat-nvidia-gpu-addon
++ pod_nodename=ip-10-0-193-255.us-east-2.compute.internal
++ echo 'Saving nvidia-bug-report from ip-10-0-193-255.us-east-2.compute.internal ...'
++ kubectl exec -c nvidia-driver-ctr -n redhat-nvidia-gpu-addon pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq -- bash -c 'cd /tmp && nvidia-bug-report.sh'
+
+nvidia-bug-report.sh will now collect information about your
+system and create the file 'nvidia-bug-report.log.gz' in the current
+directory.  It may take several seconds to run.  In some
+cases, it may hang trying to capture data generated dynamically
+by the Linux kernel and/or the NVIDIA kernel module.  While
+the bug report log file will be incomplete if this happens, it
+may still contain enough data to diagnose your problem.
+
+If nvidia-bug-report.sh hangs, consider running with the --safe-mode
+and --extra-system-data command line arguments.
+
+Please include the 'nvidia-bug-report.log.gz' log file when reporting
+your bug via the NVIDIA Linux forum (see forums.developer.nvidia.com)
+or by sending email to 'linux-bugs@nvidia.com'.
+
+By delivering 'nvidia-bug-report.log.gz' to NVIDIA, you acknowledge
+and agree that personal information may inadvertently be included in
+the output.  Notwithstanding the foregoing, NVIDIA will use the
+output only for the purpose of investigating your reported issue.
+
+Running nvidia-bug-report.sh... complete.
+
+++ basename pod/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq
++ kubectl cp -c nvidia-driver-ctr redhat-nvidia-gpu-addon/nvidia-driver-daemonset-410.84.202302080019-0-4h2pq:/tmp/nvidia-bug-report.log.gz /tmp/nvidia-bug-report.log.gz
++ mv /tmp/nvidia-bug-report.log.gz /must-gather/nvidia-bug-report_ip-10-0-193-255.us-east-2.compute.internal.log.gz
++ echo ''
++ echo '#'
++ echo '# All done!'
++ [[ /usr/bin/gather != \/\u\s\r\/\b\i\n\/\g\a\t\h\e\r ]]
++ echo '#'

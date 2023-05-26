@@ -1,0 +1,229 @@
+Name:                 nvidia-operator-validator-knv7n
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-operator-validator
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:23 +0000
+Labels:               app=nvidia-operator-validator
+                      app.kubernetes.io/part-of=gpu-operator
+                      controller-revision-hash=6c5f84d4d4
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.17"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.17"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: nvidia-operator-validator
+Status:               Running
+IP:                   10.131.2.17
+IPs:
+  IP:           10.131.2.17
+Controlled By:  DaemonSet/nvidia-operator-validator
+Init Containers:
+  driver-validation:
+    Container ID:  cri-o://9e4ddf024ac78babd14bdfddafc6a75df3bf3de3b4315976359dabfdb63f4005
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:27 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:13 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      WITH_WAIT:  true
+      COMPONENT:  driver
+    Mounts:
+      /host from host-root (ro)
+      /host-dev-char from host-dev-char (rw)
+      /run/nvidia/driver from driver-install-path (rw)
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m9lxr (ro)
+  toolkit-validation:
+    Container ID:  cri-o://7f366ee25ed690ad59c46e61e3ec1d30a497a4bff900fbb5c6c88f14e7ec6716
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:36 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:37 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      WITH_WAIT:  false
+      COMPONENT:  toolkit
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m9lxr (ro)
+  cuda-validation:
+    Container ID:  cri-o://79da170240581ac434f3c92d8606d5998bc90d53cd216c2c67f7f7af5752d7bb
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:37 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:47 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      WITH_WAIT:                    false
+      COMPONENT:                    cuda
+      NODE_NAME:                     (v1:spec.nodeName)
+      OPERATOR_NAMESPACE:           redhat-nvidia-gpu-addon (v1:metadata.namespace)
+      VALIDATOR_IMAGE:              nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+      VALIDATOR_IMAGE_PULL_POLICY:  
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m9lxr (ro)
+  plugin-validation:
+    Container ID:  cri-o://e08f057442311e097e0d96c016aebdb401b8640fbd10488a1fefe920266fd555
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      nvidia-validator
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:48 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:58 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      COMPONENT:                    plugin
+      WITH_WAIT:                    false
+      WITH_WORKLOAD:                true
+      MIG_STRATEGY:                 single
+      NODE_NAME:                     (v1:spec.nodeName)
+      OPERATOR_NAMESPACE:           redhat-nvidia-gpu-addon (v1:metadata.namespace)
+      VALIDATOR_IMAGE:              nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+      VALIDATOR_IMAGE_PULL_POLICY:  
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m9lxr (ro)
+Containers:
+  nvidia-operator-validator:
+    Container ID:  cri-o://ac429ddcfa9867c4c7b336aa20bd49e3039c824f8fbb9c093bdd00608af435a1
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      echo all validations are successful; sleep infinity
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:59 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      WITH_WORKLOAD:  true
+    Mounts:
+      /run/nvidia/validations from run-nvidia-validations (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m9lxr (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  run-nvidia-validations:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/validations
+    HostPathType:  DirectoryOrCreate
+  driver-install-path:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia/driver
+    HostPathType:  
+  host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+  host-dev-char:
+    Type:          HostPath (bare host directory volume)
+    Path:          /dev/char
+    HostPathType:  
+  kube-api-access-m9lxr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.operator-validator=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type     Reason          Age                From               Message
+  ----     ------          ----               ----               -------
+  Normal   Scheduled       24m                default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/nvidia-operator-validator-knv7n to ip-10-0-193-255.us-east-2.compute.internal
+  Normal   AddedInterface  24m                multus             Add eth0 [10.131.2.17/23] from openshift-sdn
+  Normal   Pulled          24m                kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Created         24m                kubelet            Created container driver-validation
+  Normal   Started         24m                kubelet            Started container driver-validation
+  Warning  BackOff         23m                kubelet            Back-off restarting failed container
+  Normal   Created         23m (x3 over 23m)  kubelet            Created container toolkit-validation
+  Normal   Started         23m (x3 over 23m)  kubelet            Started container toolkit-validation
+  Normal   Pulled          23m (x3 over 23m)  kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Pulled          23m                kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Created         23m                kubelet            Created container cuda-validation
+  Normal   Started         23m                kubelet            Started container cuda-validation
+  Normal   Pulled          23m                kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Created         23m                kubelet            Created container plugin-validation
+  Normal   Started         23m                kubelet            Started container plugin-validation
+  Normal   Pulled          23m                kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Created         23m                kubelet            Created container nvidia-operator-validator
+  Normal   Started         23m                kubelet            Started container nvidia-operator-validator

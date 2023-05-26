@@ -1,0 +1,9 @@
+NAMESPACE               NAME                                            PHASE     TYPE          REGION      ZONE         AGE
+openshift-machine-api   qeaisrhods-c10-629wp-gpunode-us-east-2a-rkc4z   Running   g4dn.xlarge   us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-infra-us-east-2a-8c8jh     Running   r5.xlarge     us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-infra-us-east-2a-p2nms     Running   r5.xlarge     us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-master-0                   Running   m5.2xlarge    us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-master-1                   Running   m5.2xlarge    us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-master-2                   Running   m5.2xlarge    us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-worker-us-east-2a-h75dw    Running   m5.2xlarge    us-east-2   us-east-2a   28h
+openshift-machine-api   qeaisrhods-c10-629wp-worker-us-east-2a-wsvn9    Running   m5.2xlarge    us-east-2   us-east-2a   28h

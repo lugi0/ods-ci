@@ -1,0 +1,82 @@
+Name:             addon-nvidia-gpu-addon-catalog-9dqnx
+Namespace:        redhat-nvidia-gpu-addon
+Priority:         0
+Service Account:  addon-nvidia-gpu-addon-catalog
+Node:             ip-10-0-197-168.us-east-2.compute.internal/10.0.197.168
+Start Time:       Wed, 01 Mar 2023 12:37:02 +0000
+Labels:           olm.catalogSource=addon-nvidia-gpu-addon-catalog
+                  olm.pod-spec-hash=77f4bd6cdd
+Annotations:      cluster-autoscaler.kubernetes.io/safe-to-evict: true
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.128.2.29"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  k8s.v1.cni.cncf.io/networks-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.128.2.29"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  openshift.io/scc: anyuid
+Status:           Running
+IP:               10.128.2.29
+IPs:
+  IP:  10.128.2.29
+Containers:
+  registry-server:
+    Container ID:   cri-o://842c8c699e6d287de5f240d2eb194c2256b982bc716da5bcdf2733e7faf1a3c7
+    Image:          quay.io/osd-addons/nvidia-gpu-addon-index@sha256:709b65b1bd60b2a2896054384a5a02c99a75581cb2ec22d96f0e779f2db6d332
+    Image ID:       quay.io/osd-addons/nvidia-gpu-addon-index@sha256:709b65b1bd60b2a2896054384a5a02c99a75581cb2ec22d96f0e779f2db6d332
+    Port:           50051/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:08 +0000
+    Ready:          True
+    Restart Count:  1
+    Requests:
+      cpu:        10m
+      memory:     50Mi
+    Liveness:     exec [grpc_health_probe -addr=:50051] delay=10s timeout=5s period=10s #success=1 #failure=3
+    Readiness:    exec [grpc_health_probe -addr=:50051] delay=5s timeout=5s period=10s #success=1 #failure=3
+    Startup:      exec [grpc_health_probe -addr=:50051] delay=0s timeout=1s period=10s #success=1 #failure=15
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-sqs4v (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-sqs4v:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   Burstable
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason          Age   From             Message
+  ----     ------          ----  ----             -------
+  Warning  NodeNotReady    26m   node-controller  Node is not ready
+  Normal   AddedInterface  24m   multus           Add eth0 [10.128.2.29/23] from openshift-sdn
+  Normal   Pulled          24m   kubelet          Container image "quay.io/osd-addons/nvidia-gpu-addon-index@sha256:709b65b1bd60b2a2896054384a5a02c99a75581cb2ec22d96f0e779f2db6d332" already present on machine
+  Normal   Created         24m   kubelet          Created container registry-server
+  Normal   Started         24m   kubelet          Started container registry-server

@@ -1,0 +1,72 @@
+Name:           nvidia-mig-manager
+Selector:       app=nvidia-mig-manager
+Node-Selector:  nvidia.com/gpu.deploy.mig-manager=true
+Labels:         app=nvidia-mig-manager
+Annotations:    deprecated.daemonset.template.generation: 1
+                nvidia.com/last-applied-hash: 371e9ccbab0490d4
+Desired Number of Nodes Scheduled: 0
+Current Number of Nodes Scheduled: 0
+Number of Nodes Scheduled with Up-to-date Pods: 0
+Number of Nodes Scheduled with Available Pods: 0
+Number of Nodes Misscheduled: 0
+Pods Status:  0 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app=nvidia-mig-manager
+  Service Account:  nvidia-mig-manager
+  Init Containers:
+   toolkit-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container toolkit to be setup; sleep 5; done
+    Environment:  <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+  Containers:
+   nvidia-mig-manager:
+    Image:      nvcr.io/nvidia/cloud-native/k8s-mig-manager@sha256:50c2a2b998e467c82716efa79fe136aa6f7ea95fd23576cf384d251bb9628640
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      bash
+      -c
+    Args:
+       [[ -f /run/nvidia/validations/host-driver-ready ]] && host_driver=true || host_driver=false; export WITH_SHUTDOWN_HOST_GPU_CLIENTS=$host_driver; exec nvidia-mig-manager
+    Environment:
+      NODE_NAME:                       (v1:spec.nodeName)
+      CONFIG_FILE:                    /mig-parted-config/config.yaml
+      GPU_CLIENTS_FILE:               /gpu-clients/clients.yaml
+      DEFAULT_GPU_CLIENTS_NAMESPACE:   (v1:metadata.namespace)
+    Mounts:
+      /gpu-clients from gpu-clients (rw)
+      /host from host-root (rw)
+      /mig-parted-config from mig-parted-config (rw)
+      /run/nvidia from run-nvidia (rw)
+      /sys from host-sys (rw)
+  Volumes:
+   host-sys:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys
+    HostPathType:  Directory
+   mig-parted-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      default-mig-parted-config
+    Optional:  false
+   run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  Directory
+   host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+   gpu-clients:
+    Type:               ConfigMap (a volume populated by a ConfigMap)
+    Name:               default-gpu-clients
+    Optional:           false
+  Priority Class Name:  system-node-critical
+Events:                 <none>

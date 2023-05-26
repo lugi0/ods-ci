@@ -1,0 +1,33 @@
+
+2f22aa8739212b008c9ce511a0427ff28188a7d69a3250b81b929402994j65r:	quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a85fbe0aecf2203c347074c95cae8ef611897c5c614e2ea8ad3a612b32ab355b 
+5f5a51d644d1e13b2c35cb24e878d2a680f2003d88d73eb24c15ae65248d7hr:	quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a85fbe0aecf2203c347074c95cae8ef611897c5c614e2ea8ad3a612b32ab355b 
+addon-nvidia-gpu-addon-catalog-9dqnx:	quay.io/osd-addons/nvidia-gpu-addon-index@sha256:709b65b1bd60b2a2896054384a5a02c99a75581cb2ec22d96f0e779f2db6d332 
+alertmanager-gpuaddon-alertmanager-0:	registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:c19d7f46cdbe73cdec06fde1bb621180e512400145d8aff94476a464004b6dd8 registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6 
+alertmanager-gpuaddon-alertmanager-1:	registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:c19d7f46cdbe73cdec06fde1bb621180e512400145d8aff94476a464004b6dd8 registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6 
+alertmanager-gpuaddon-alertmanager-2:	registry.redhat.io/openshift4/ose-prometheus-alertmanager@sha256:c19d7f46cdbe73cdec06fde1bb621180e512400145d8aff94476a464004b6dd8 registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6 
+console-plugin-nvidia-gpu-65c9679ffb-xhlrj:	quay.io/edge-infrastructure/console-plugin-nvidia-gpu@sha256:3aee994ea1bb111b75bd40c5ce5ee9109591e9f14f09ead07ecb507b3f07e93e 
+controller-manager-6c88c48689-tdzm8:	registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:01c7cb194032e5488b4d20e29a2b474a1bfa24984893e625e2544432b950f461 quay.io/edge-infrastructure/nvidia-gpu-addon-operator:1.2 
+d4c3b85e112da75dcb84fe52e18e7caceab09876e985e083c8905e46dawsfwk:	quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a85fbe0aecf2203c347074c95cae8ef611897c5c614e2ea8ad3a612b32ab355b 
+df7f4da7d2f12435b906c21f643c01e07d357cf810f29a05483546554f69b4f:	quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a85fbe0aecf2203c347074c95cae8ef611897c5c614e2ea8ad3a612b32ab355b 
+gpu-feature-discovery-pb6lc:	nvcr.io/nvidia/gpu-feature-discovery@sha256:bec9f026d9b3d9404c78d6091817a359015c6a7aa411735b34138c1518853b5d 
+gpu-operator-b4f74c8cf-vz6lr:	nvcr.io/nvidia/gpu-operator@sha256:54d5846c0291db621931a8544c9cb6437512470a93278ca9130ba73f2e2f0055 
+nfd-controller-manager-59c56864f9-fbhk8:	registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:01c7cb194032e5488b4d20e29a2b474a1bfa24984893e625e2544432b950f461 quay.io/edge-infrastructure/cluster-nfd-operator@sha256:795feb27604fd2a5909655ae814c6c521006afe64ee68a1967ac402436b5a480 
+nfd-master-lqnlt:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-master-qhqxn:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-master-z5tpb:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-worker-58jk2:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-worker-9nq2l:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-worker-qp4lx:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-worker-sztb7:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nfd-worker-vj44c:	registry.redhat.io/openshift4/ose-node-feature-discovery@sha256:edd2adfdf423d6a1eb7e8c1e388d9cf5fbc829e7e66c7bc955e9b2a6f50d1a47 
+nvidia-container-toolkit-daemonset-fxdlr:	nvcr.io/nvidia/k8s/container-toolkit@sha256:efb88937f73434994d1bbadc87b492a1df047aa9f8d6e9f5ec3b09536e6e7691 
+nvidia-cuda-validator-hv9nq:	nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd 
+nvidia-dcgm-exporter-5mprj:	nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d 
+nvidia-dcgm-gn8cf:	nvcr.io/nvidia/cloud-native/dcgm@sha256:c3cf59dd5d6160eba5d816ade2e81b35ebb10f4884df67971f6ace36f8e6efc1 
+nvidia-device-plugin-daemonset-vcdf5:	nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3 
+nvidia-device-plugin-validator-tjd77:	nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd 
+nvidia-driver-daemonset-410.84.202302080019-0-4h2pq:	nvcr.io/nvidia/driver@sha256:268c26781c46b36fe691638e807eb5c3a2cd077029ddb095ac75264adac04925 quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734 
+nvidia-node-status-exporter-qxfw2:	nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd 
+nvidia-operator-validator-knv7n:	nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd 
+prometheus-gpuaddon-prometheus-0:	registry.redhat.io/openshift4/ose-prometheus@sha256:965be94ef56057f39551a4925e92b406deabcc8acad3d9ba3f44a55e77fd153a registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6 quay.io/openshift/origin-kube-rbac-proxy:4.10.0 
+prometheus-operator-7d5889b6-82hxl:	registry.redhat.io/openshift4/ose-prometheus-operator@sha256:ae1771e6a79e669b4b9a852e3ce75ff9230a57479c8508201de5d923a27d2cca 

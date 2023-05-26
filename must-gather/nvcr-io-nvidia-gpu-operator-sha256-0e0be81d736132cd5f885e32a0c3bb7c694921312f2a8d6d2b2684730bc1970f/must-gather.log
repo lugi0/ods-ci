@@ -1,0 +1,74 @@
+Running in OpenShift.
+Get the cluster version
+Get the operator namespaces
+Using 'redhat-nvidia-gpu-addon' as operator namespace
+Using 'redhat-nvidia-gpu-addon' as operand namespace
+
+#
+# ClusterPolicy
+#
+
+Get clusterpolicy.nvidia.com/ocp-gpu-addon
+
+#
+# Nodes and machines
+#
+
+Get all the machines
+Get the labels of the nodes with NVIDIA PCI cards
+Get the GPU nodes (status)
+Get the GPU nodes (description)
+
+#
+# Operator Pod
+#
+
+Get the GPU Operator Pod (status)
+Get the GPU Operator Pod (yaml)
+Get the GPU Operator Pod logs
+
+#
+# Operand Pods
+#
+
+Get the Pods in redhat-nvidia-gpu-addon (status)
+Get the Pods in redhat-nvidia-gpu-addon (yaml)
+Get the GPU Operator Pods Images
+Get the description and logs of the GPU Operator Pods
+Skipping pod/2f22aa8739212b008c9ce511a0427ff28188a7d69a3250b81b929402994j65r, not a NVIDA/GPU Pod ...
+Skipping pod/5f5a51d644d1e13b2c35cb24e878d2a680f2003d88d73eb24c15ae65248d7hr, not a NVIDA/GPU Pod ...
+Skipping pod/controller-manager-6c88c48689-tdzm8, not a NVIDA/GPU Pod ...
+Skipping pod/d4c3b85e112da75dcb84fe52e18e7caceab09876e985e083c8905e46dawsfwk, not a NVIDA/GPU Pod ...
+Skipping pod/df7f4da7d2f12435b906c21f643c01e07d357cf810f29a05483546554f69b4f, not a NVIDA/GPU Pod ...
+Skipping operator pod gpu-operator-b4f74c8cf-vz6lr ...
+Skipping pod/nfd-controller-manager-59c56864f9-fbhk8, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-master-lqnlt, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-master-qhqxn, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-master-z5tpb, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-worker-58jk2, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-worker-9nq2l, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-worker-qp4lx, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-worker-sztb7, not a NVIDA/GPU Pod ...
+Skipping pod/nfd-worker-vj44c, not a NVIDA/GPU Pod ...
+Skipping pod/prometheus-operator-7d5889b6-82hxl, not a NVIDA/GPU Pod ...
+
+#
+# Operand DaemonSets
+#
+
+Get the DaemonSets in redhat-nvidia-gpu-addon (status)
+Get the DaemonSets in redhat-nvidia-gpu-addon (yaml)
+Get the description of the GPU Operator DaemonSets
+Skipping daemonset.apps/nfd-master, not a NVIDA/GPU DaemonSet ...
+Skipping daemonset.apps/nfd-worker, not a NVIDA/GPU DaemonSet ...
+
+#
+# nvidia-bug-report.sh
+#
+
+Saving nvidia-bug-report from ip-10-0-193-255.us-east-2.compute.internal ...
+tar: Removing leading `/' from member names
+
+#
+# All done!
+#

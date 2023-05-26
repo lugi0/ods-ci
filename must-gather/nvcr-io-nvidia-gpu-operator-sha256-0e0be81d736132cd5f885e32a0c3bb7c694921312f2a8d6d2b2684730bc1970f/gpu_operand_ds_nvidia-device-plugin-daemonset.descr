@@ -1,0 +1,66 @@
+Name:           nvidia-device-plugin-daemonset
+Selector:       app=nvidia-device-plugin-daemonset
+Node-Selector:  nvidia.com/gpu.deploy.device-plugin=true
+Labels:         app=nvidia-device-plugin-daemonset
+Annotations:    deprecated.daemonset.template.generation: 1
+                nvidia.com/last-applied-hash: e2bee65194e7ab87
+                openshift.io/scc: hostmount-anyuid
+Desired Number of Nodes Scheduled: 1
+Current Number of Nodes Scheduled: 1
+Number of Nodes Scheduled with Up-to-date Pods: 1
+Number of Nodes Scheduled with Available Pods: 1
+Number of Nodes Misscheduled: 0
+Pods Status:  1 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app=nvidia-device-plugin-daemonset
+  Service Account:  nvidia-device-plugin
+  Init Containers:
+   toolkit-validation:
+    Image:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    Environment:  <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+  Containers:
+   nvidia-device-plugin:
+    Image:      nvcr.io/nvidia/k8s-device-plugin@sha256:9c17d3a907eb77eb8f7b4f3faf52d8352e4252af92003f828083f80d629bd2c3
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      bash
+      -c
+    Args:
+      [[ -f /run/nvidia/validations/host-driver-ready ]] && driver_root=/ || driver_root=/run/nvidia/driver; export NVIDIA_DRIVER_ROOT=$driver_root; exec nvidia-device-plugin;
+    Environment:
+      PASS_DEVICE_SPECS:           true
+      FAIL_ON_INIT_ERROR:          true
+      DEVICE_LIST_STRATEGY:        envvar
+      DEVICE_ID_STRATEGY:          uuid
+      NVIDIA_VISIBLE_DEVICES:      all
+      NVIDIA_DRIVER_CAPABILITIES:  all
+      MIG_STRATEGY:                single
+      NVIDIA_MIG_MONITOR_DEVICES:  all
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/lib/kubelet/device-plugins from device-plugin (rw)
+  Volumes:
+   device-plugin:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/kubelet/device-plugins
+    HostPathType:  
+   run-nvidia:
+    Type:               HostPath (bare host directory volume)
+    Path:               /run/nvidia
+    HostPathType:       Directory
+  Priority Class Name:  system-node-critical
+Events:
+  Type    Reason            Age   From                  Message
+  ----    ------            ----  ----                  -------
+  Normal  SuccessfulDelete  25m   daemonset-controller  Deleted pod: nvidia-device-plugin-daemonset-wx7mx
+  Normal  SuccessfulCreate  24m   daemonset-controller  Created pod: nvidia-device-plugin-daemonset-vcdf5

@@ -1,0 +1,54 @@
+apiVersion: config.openshift.io/v1
+kind: ClusterVersion
+metadata:
+  creationTimestamp: "2023-03-01T11:45:57Z"
+  generation: 2
+  name: version
+  resourceVersion: "975702"
+  uid: 6878919d-f0b4-4abe-adeb-26a92f965e23
+spec:
+  channel: stable-4.10
+  clusterID: e978de86-e338-4894-ab6f-04d041aeb354
+status:
+  availableUpdates: null
+  conditions:
+  - lastTransitionTime: "2023-03-01T11:45:57Z"
+    status: "True"
+    type: RetrievedUpdates
+  - lastTransitionTime: "2023-03-01T11:45:57Z"
+    message: Payload loaded version="4.10.52" image="quay.io/openshift-release-dev/ocp-release@sha256:b13ee67469f7f85a1b1daf57424f3c7c02c3a188cb640dc6284742091a7e6d50"
+    reason: PayloadLoaded
+    status: "True"
+    type: ReleaseAccepted
+  - lastTransitionTime: "2023-03-01T12:05:47Z"
+    message: Done applying 4.10.52
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2023-03-02T16:14:03Z"
+    status: "False"
+    type: Failing
+  - lastTransitionTime: "2023-03-01T12:05:47Z"
+    message: Cluster version is 4.10.52
+    status: "False"
+    type: Progressing
+  desired:
+    channels:
+    - candidate-4.10
+    - candidate-4.11
+    - eus-4.10
+    - fast-4.10
+    - fast-4.11
+    - stable-4.10
+    - stable-4.11
+    image: quay.io/openshift-release-dev/ocp-release@sha256:b13ee67469f7f85a1b1daf57424f3c7c02c3a188cb640dc6284742091a7e6d50
+    url: https://access.redhat.com/errata/RHSA-2023:0698
+    version: 4.10.52
+  history:
+  - completionTime: "2023-03-01T12:05:47Z"
+    image: quay.io/openshift-release-dev/ocp-release@sha256:b13ee67469f7f85a1b1daf57424f3c7c02c3a188cb640dc6284742091a7e6d50
+    startedTime: "2023-03-01T11:45:57Z"
+    state: Completed
+    verified: false
+    version: 4.10.52
+  observedGeneration: 2
+  versionHash: hIc4-dnLO5s=

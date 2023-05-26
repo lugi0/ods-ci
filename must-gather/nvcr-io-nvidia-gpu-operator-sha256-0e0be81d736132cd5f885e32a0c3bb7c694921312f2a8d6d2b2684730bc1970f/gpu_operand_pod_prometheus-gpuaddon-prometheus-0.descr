@@ -1,0 +1,241 @@
+Name:             prometheus-gpuaddon-prometheus-0
+Namespace:        redhat-nvidia-gpu-addon
+Priority:         0
+Service Account:  prometheus-k8s
+Node:             ip-10-0-197-168.us-east-2.compute.internal/10.0.197.168
+Start Time:       Wed, 01 Mar 2023 12:37:59 +0000
+Labels:           app.kubernetes.io/instance=gpuaddon-prometheus
+                  app.kubernetes.io/managed-by=prometheus-operator
+                  app.kubernetes.io/name=prometheus
+                  app.kubernetes.io/version=2.36.0
+                  controller-revision-hash=prometheus-gpuaddon-prometheus-7ccbb99795
+                  operator.prometheus.io/name=gpuaddon-prometheus
+                  operator.prometheus.io/shard=0
+                  prometheus=gpuaddon-prometheus
+                  statefulset.kubernetes.io/pod-name=prometheus-gpuaddon-prometheus-0
+Annotations:      k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.128.2.2"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  k8s.v1.cni.cncf.io/networks-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.128.2.2"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  kubectl.kubernetes.io/default-container: prometheus
+                  openshift.io/scc: restricted
+Status:           Running
+IP:               10.128.2.2
+IPs:
+  IP:           10.128.2.2
+Controlled By:  StatefulSet/prometheus-gpuaddon-prometheus
+Init Containers:
+  init-config-reloader:
+    Container ID:  cri-o://f5c3aab0c26045eb092211794866b58f94f9c9aa00aa0d18e48c8ce28032ac1b
+    Image:         registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Image ID:      registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Port:          8080/TCP
+    Host Port:     0/TCP
+    Command:
+      /bin/prometheus-config-reloader
+    Args:
+      --watch-interval=0
+      --listen-address=:8080
+      --config-file=/etc/prometheus/config/prometheus.yaml.gz
+      --config-envsubst-file=/etc/prometheus/config_out/prometheus.env.yaml
+      --watched-dir=/etc/prometheus/rules/prometheus-gpuaddon-prometheus-rulefiles-0
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:04 +0000
+      Finished:     Thu, 02 Mar 2023 16:14:04 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     100m
+      memory:  50Mi
+    Requests:
+      cpu:     100m
+      memory:  50Mi
+    Environment:
+      POD_NAME:  prometheus-gpuaddon-prometheus-0 (v1:metadata.name)
+      SHARD:     0
+    Mounts:
+      /etc/prometheus/config from config (rw)
+      /etc/prometheus/config_out from config-out (rw)
+      /etc/prometheus/rules/prometheus-gpuaddon-prometheus-rulefiles-0 from prometheus-gpuaddon-prometheus-rulefiles-0 (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m8zcz (ro)
+Containers:
+  prometheus:
+    Container ID:  cri-o://f7d547b885ff5662f1335f71e3fa1604a6f9c113993a657e9487479ad79b7a78
+    Image:         registry.redhat.io/openshift4/ose-prometheus@sha256:965be94ef56057f39551a4925e92b406deabcc8acad3d9ba3f44a55e77fd153a
+    Image ID:      registry.redhat.io/openshift4/ose-prometheus@sha256:1776971d340a724503881408e2cb795c84adfe718a9ed03028179a0e5fbc2870
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      --web.console.templates=/etc/prometheus/consoles
+      --web.console.libraries=/etc/prometheus/console_libraries
+      --storage.tsdb.retention.time=24h
+      --config.file=/etc/prometheus/config_out/prometheus.env.yaml
+      --storage.tsdb.path=/prometheus
+      --web.enable-lifecycle
+      --web.route-prefix=/
+      --web.listen-address=127.0.0.1:9090
+      --web.config.file=/etc/prometheus/web_config/web-config.yaml
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:06 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     1
+      memory:  250Mi
+    Requests:
+      cpu:        1
+      memory:     250Mi
+    Liveness:     exec [sh -c if [ -x "$(command -v curl)" ]; then exec curl --fail http://localhost:9090/-/healthy; elif [ -x "$(command -v wget)" ]; then exec wget -q -O /dev/null http://localhost:9090/-/healthy; else exit 1; fi] delay=0s timeout=3s period=5s #success=1 #failure=6
+    Readiness:    exec [sh -c if [ -x "$(command -v curl)" ]; then exec curl --fail http://localhost:9090/-/ready; elif [ -x "$(command -v wget)" ]; then exec wget -q -O /dev/null http://localhost:9090/-/ready; else exit 1; fi] delay=0s timeout=3s period=5s #success=1 #failure=3
+    Startup:      exec [sh -c if [ -x "$(command -v curl)" ]; then exec curl --fail http://localhost:9090/-/ready; elif [ -x "$(command -v wget)" ]; then exec wget -q -O /dev/null http://localhost:9090/-/ready; else exit 1; fi] delay=0s timeout=3s period=15s #success=1 #failure=60
+    Environment:  <none>
+    Mounts:
+      /etc/prometheus/certs from tls-assets (ro)
+      /etc/prometheus/config_out from config-out (ro)
+      /etc/prometheus/rules/prometheus-gpuaddon-prometheus-rulefiles-0 from prometheus-gpuaddon-prometheus-rulefiles-0 (rw)
+      /etc/prometheus/web_config/web-config.yaml from web-config (ro,path="web-config.yaml")
+      /prometheus from prometheus-gpuaddon-prometheus-db (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m8zcz (ro)
+  config-reloader:
+    Container ID:  cri-o://02aa8480daa21c8aafdd9078b70e17a61152543e8b862cdf23f212ec083838dc
+    Image:         registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Image ID:      registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/prometheus-config-reloader
+    Args:
+      --listen-address=localhost:8080
+      --reload-url=http://localhost:9090/-/reload
+      --config-file=/etc/prometheus/config/prometheus.yaml.gz
+      --config-envsubst-file=/etc/prometheus/config_out/prometheus.env.yaml
+      --watched-dir=/etc/prometheus/rules/prometheus-gpuaddon-prometheus-rulefiles-0
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:06 +0000
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     100m
+      memory:  50Mi
+    Requests:
+      cpu:     100m
+      memory:  50Mi
+    Environment:
+      POD_NAME:  prometheus-gpuaddon-prometheus-0 (v1:metadata.name)
+      SHARD:     0
+    Mounts:
+      /etc/prometheus/config from config (rw)
+      /etc/prometheus/config_out from config-out (rw)
+      /etc/prometheus/rules/prometheus-gpuaddon-prometheus-rulefiles-0 from prometheus-gpuaddon-prometheus-rulefiles-0 (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m8zcz (ro)
+  kube-rbac-proxy:
+    Container ID:  cri-o://c3a9e2c4ffe76a99863e437c9da5d29399e7e2b5368f05f874279d948fa2d732
+    Image:         quay.io/openshift/origin-kube-rbac-proxy:4.10.0
+    Image ID:      quay.io/openshift/origin-kube-rbac-proxy@sha256:baedb268ac66456018fb30af395bb3d69af5fff3252ff5d549f0231b1ebb6901
+    Port:          9339/TCP
+    Host Port:     0/TCP
+    Args:
+      --secure-listen-address=0.0.0.0:9339
+      --upstream=http://127.0.0.1:9090/
+      --logtostderr=true
+      --v=10
+      --tls-cert-file=/etc/tls-secret/tls.crt
+      --tls-private-key-file=/etc/tls-secret/tls.key
+      --client-ca-file=/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+      --config-file=/etc/kube-rbac-config/config-file.json
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:14:08 +0000
+    Ready:          True
+    Restart Count:  1
+    Environment:    <none>
+    Mounts:
+      /etc/kube-rbac-config from kube-rbac-config (rw)
+      /etc/tls-secret from serving-cert (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-m8zcz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  prometheus-gpuaddon-prometheus
+    Optional:    false
+  tls-assets:
+    Type:                Projected (a volume that contains injected data from multiple sources)
+    SecretName:          prometheus-gpuaddon-prometheus-tls-assets-0
+    SecretOptionalName:  <nil>
+  config-out:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  prometheus-gpuaddon-prometheus-rulefiles-0:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      prometheus-gpuaddon-prometheus-rulefiles-0
+    Optional:  false
+  web-config:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  prometheus-gpuaddon-prometheus-web-config
+    Optional:    false
+  prometheus-gpuaddon-prometheus-db:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  serving-cert:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  prometheus-serving-cert-secret
+    Optional:    false
+  kube-rbac-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      prometheus-kube-rbac-proxy-config
+    Optional:  false
+  kube-api-access-m8zcz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason          Age   From             Message
+  ----     ------          ----  ----             -------
+  Warning  NodeNotReady    26m   node-controller  Node is not ready
+  Normal   AddedInterface  25m   multus           Add eth0 [10.128.2.2/23] from openshift-sdn
+  Normal   Pulled          24m   kubelet          Container image "registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6" already present on machine
+  Normal   Created         24m   kubelet          Created container init-config-reloader
+  Normal   Started         24m   kubelet          Started container init-config-reloader
+  Normal   Pulled          24m   kubelet          Container image "registry.redhat.io/openshift4/ose-prometheus@sha256:965be94ef56057f39551a4925e92b406deabcc8acad3d9ba3f44a55e77fd153a" already present on machine
+  Normal   Created         24m   kubelet          Created container prometheus
+  Normal   Started         24m   kubelet          Started container prometheus
+  Normal   Pulled          24m   kubelet          Container image "registry.redhat.io/openshift4/ose-prometheus-config-reloader@sha256:2a953b6a38c5c59376165afa8d7c46bdf586ce2d3bf59f745130e4d09a0813a6" already present on machine
+  Normal   Created         24m   kubelet          Created container config-reloader
+  Normal   Started         24m   kubelet          Started container config-reloader
+  Normal   Pulled          24m   kubelet          Container image "quay.io/openshift/origin-kube-rbac-proxy:4.10.0" already present on machine
+  Normal   Created         24m   kubelet          Created container kube-rbac-proxy
+  Normal   Started         24m   kubelet          Started container kube-rbac-proxy

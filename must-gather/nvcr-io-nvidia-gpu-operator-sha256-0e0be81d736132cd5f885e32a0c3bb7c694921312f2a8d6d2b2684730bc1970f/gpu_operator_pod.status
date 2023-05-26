@@ -1,0 +1,2 @@
+NAME                           READY   STATUS    RESTARTS   AGE   IP            NODE                                         NOMINATED NODE   READINESS GATES
+gpu-operator-b4f74c8cf-vz6lr   1/1     Running   1          28h   10.131.0.46   ip-10-0-229-111.us-east-2.compute.internal   <none>           <none>

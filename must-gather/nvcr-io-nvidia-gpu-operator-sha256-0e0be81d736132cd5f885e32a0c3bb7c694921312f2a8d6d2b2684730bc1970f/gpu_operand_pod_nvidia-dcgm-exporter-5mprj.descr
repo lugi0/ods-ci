@@ -1,0 +1,129 @@
+Name:                 nvidia-dcgm-exporter-5mprj
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-dcgm-exporter
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Thu, 02 Mar 2023 16:14:24 +0000
+Labels:               app=nvidia-dcgm-exporter
+                      controller-revision-hash=b9ff6b96c
+                      pod-template-generation=1
+Annotations:          openshift.io/scc: nvidia-dcgm-exporter
+Status:               Running
+IP:                   10.0.193.255
+IPs:
+  IP:           10.0.193.255
+Controlled By:  DaemonSet/nvidia-dcgm-exporter
+Init Containers:
+  toolkit-validation:
+    Container ID:  cri-o://3391b79783d9b784b690af280e451459cb9feaf210f714ebe07beb1614069287
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      until [ -f /run/nvidia/validations/toolkit-ready ]; do echo waiting for nvidia container stack to be setup; sleep 5; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:14:25 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:40 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /run/nvidia from run-nvidia (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kxjwj (ro)
+  init-pod-nvidia-node-status-exporter:
+    Container ID:  cri-o://5f3d17c96883c2f40e63a128c4f344f7eef0bde77f82580e19345c4af37c3fec
+    Image:         nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d
+    Image ID:      nvcr.io/nvidia/cuda@sha256:0582a03385184d484d2da34d24dee7ae62028cd33ea0bff589575a243266ae02
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/entrypoint.sh
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:41 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:41 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      NVIDIA_DISABLE_REQUIRE:  true
+    Mounts:
+      /bin/entrypoint.sh from init-config (ro,path="entrypoint.sh")
+      /var/lib/kubelet/pod-resources from pod-gpu-resources (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kxjwj (ro)
+Containers:
+  nvidia-dcgm-exporter:
+    Container ID:   cri-o://21465c381a767441b999d41a306243de68c6671326fcb32e7147cff97431d833
+    Image:          nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d
+    Image ID:       nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d
+    Port:           9400/TCP
+    Host Port:      9400/TCP
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:15:42 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      DCGM_EXPORTER_LISTEN:         :9400
+      DCGM_EXPORTER_KUBERNETES:     true
+      DCGM_EXPORTER_COLLECTORS:     /etc/dcgm-exporter/dcp-metrics-included.csv
+      DCGM_REMOTE_HOSTENGINE_INFO:  localhost:5555
+    Mounts:
+      /var/lib/kubelet/pod-resources from pod-gpu-resources (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kxjwj (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  pod-gpu-resources:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/kubelet/pod-resources
+    HostPathType:  
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  
+  init-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      nvidia-dcgm-exporter
+    Optional:  false
+  kube-api-access-kxjwj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.dcgm-exporter=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  24m   default-scheduler  Successfully assigned redhat-nvidia-gpu-addon/nvidia-dcgm-exporter-5mprj to ip-10-0-193-255.us-east-2.compute.internal
+  Normal  Pulled     24m   kubelet            Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created    24m   kubelet            Created container toolkit-validation
+  Normal  Started    24m   kubelet            Started container toolkit-validation
+  Normal  Pulled     23m   kubelet            Container image "nvcr.io/nvidia/cuda@sha256:5f2a2d8977f2c59abe88394f05cc3c044194554f90994d8554b0e1117ab5900d" already present on machine
+  Normal  Created    23m   kubelet            Created container init-pod-nvidia-node-status-exporter
+  Normal  Started    23m   kubelet            Started container init-pod-nvidia-node-status-exporter
+  Normal  Pulled     23m   kubelet            Container image "nvcr.io/nvidia/k8s/dcgm-exporter@sha256:9a00cdfdddb73327ef8e8e0fa60e50926a388d380c551bba6a3d3012be40401d" already present on machine
+  Normal  Created    23m   kubelet            Created container nvidia-dcgm-exporter
+  Normal  Started    23m   kubelet            Started container nvidia-dcgm-exporter

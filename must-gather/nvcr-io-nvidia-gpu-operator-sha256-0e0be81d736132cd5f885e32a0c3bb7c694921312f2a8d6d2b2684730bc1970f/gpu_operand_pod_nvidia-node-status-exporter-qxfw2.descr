@@ -1,0 +1,98 @@
+Name:                 nvidia-node-status-exporter-qxfw2
+Namespace:            redhat-nvidia-gpu-addon
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      nvidia-node-status-exporter
+Node:                 ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:           Wed, 01 Mar 2023 12:39:19 +0000
+Labels:               app=nvidia-node-status-exporter
+                      controller-revision-hash=7799d44fcf
+                      pod-template-generation=1
+Annotations:          k8s.v1.cni.cncf.io/network-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.4"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      k8s.v1.cni.cncf.io/networks-status:
+                        [{
+                            "name": "openshift-sdn",
+                            "interface": "eth0",
+                            "ips": [
+                                "10.131.2.4"
+                            ],
+                            "default": true,
+                            "dns": {}
+                        }]
+                      openshift.io/scc: nvidia-driver
+Status:               Running
+IP:                   10.131.2.4
+IPs:
+  IP:           10.131.2.4
+Controlled By:  DaemonSet/nvidia-node-status-exporter
+Containers:
+  nvidia-node-status-exporter:
+    Container ID:  cri-o://d3965f4741eabef1c6ad5f98d0137b83edf9add8dcfb748701ec65989e73c949
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          8000/TCP
+    Host Port:     0/TCP
+    Command:
+      nvidia-validator
+    State:          Running
+      Started:      Thu, 02 Mar 2023 16:13:39 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      NVIDIA_VISIBLE_DEVICES:  void
+      COMPONENT:               metrics
+      METRICS_PORT:            8000
+      NODE_NAME:                (v1:spec.nodeName)
+    Mounts:
+      /host from host-root (ro)
+      /run/nvidia from run-nvidia (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2259l (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  run-nvidia:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/nvidia
+    HostPathType:  Directory
+  host-root:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  
+  kube-api-access-2259l:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              nvidia.com/gpu.deploy.node-status-exporter=true
+Tolerations:                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type     Reason          Age   From             Message
+  ----     ------          ----  ----             -------
+  Warning  NodeNotReady    27m   node-controller  Node is not ready
+  Normal   AddedInterface  25m   multus           Add eth0 [10.131.2.4/23] from openshift-sdn
+  Normal   Pulled          25m   kubelet          Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal   Created         25m   kubelet          Created container nvidia-node-status-exporter
+  Normal   Started         25m   kubelet          Started container nvidia-node-status-exporter

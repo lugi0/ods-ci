@@ -1,0 +1,7 @@
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] [Vector addition of 50000 elements]
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] Copy input data from the host memory to the CUDA device
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] CUDA kernel launch with 196 blocks of 256 threads
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] Copy output data from the CUDA device to the host memory
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] Test PASSED
+[pod/nvidia-cuda-validator-hv9nq/cuda-validation] Done
+[pod/nvidia-cuda-validator-hv9nq/nvidia-cuda-validator] cuda workload validation is successful

@@ -1,0 +1,107 @@
+Name:             nvidia-cuda-validator-hv9nq
+Namespace:        redhat-nvidia-gpu-addon
+Priority:         0
+Service Account:  nvidia-operator-validator
+Node:             ip-10-0-193-255.us-east-2.compute.internal/10.0.193.255
+Start Time:       Thu, 02 Mar 2023 16:15:37 +0000
+Labels:           app=nvidia-cuda-validator
+Annotations:      k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.2.19"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  k8s.v1.cni.cncf.io/networks-status:
+                    [{
+                        "name": "openshift-sdn",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.2.19"
+                        ],
+                        "default": true,
+                        "dns": {}
+                    }]
+                  openshift.io/scc: nvidia-operator-validator
+Status:           Succeeded
+IP:               10.131.2.19
+IPs:
+  IP:           10.131.2.19
+Controlled By:  ClusterPolicy/ocp-gpu-addon
+Init Containers:
+  cuda-validation:
+    Container ID:  cri-o://9bd6729b6bff0e599b77f78f8fa9fa20084cc65ffe6eeeb6ed84a96e5b2c5835
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      vectorAdd
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:40 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:40 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcrsc (ro)
+Containers:
+  nvidia-cuda-validator:
+    Container ID:  cri-o://05820f7a65636877032be1babf28b0a9b0408ebdea0a3173082d75d62c81c0b7
+    Image:         nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Image ID:      nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+    Args:
+      echo cuda workload validation is successful
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 02 Mar 2023 16:15:41 +0000
+      Finished:     Thu, 02 Mar 2023 16:15:41 +0000
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcrsc (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-jcrsc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+                             nvidia.com/gpu:NoSchedule op=Exists
+Events:
+  Type    Reason          Age   From     Message
+  ----    ------          ----  ----     -------
+  Normal  AddedInterface  23m   multus   Add eth0 [10.131.2.19/23] from openshift-sdn
+  Normal  Pulled          23m   kubelet  Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created         23m   kubelet  Created container cuda-validation
+  Normal  Started         23m   kubelet  Started container cuda-validation
+  Normal  Pulled          23m   kubelet  Container image "nvcr.io/nvidia/cloud-native/gpu-operator-validator@sha256:00f1476548fbed9ee01961443a73bf65396c2e8bb2b84426f949dd56cb4d14cd" already present on machine
+  Normal  Created         23m   kubelet  Created container nvidia-cuda-validator
+  Normal  Started         23m   kubelet  Started container nvidia-cuda-validator

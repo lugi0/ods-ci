@@ -1,0 +1,473 @@
+{"level":"info","ts":1677773640.487015,"msg":"version: 94874934"}
+{"level":"info","ts":1677773640.4870415,"msg":"commit: "}
+I0302 16:14:01.538728       1 request.go:682] Waited for 1.041322867s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/policy/v1?timeout=32s
+{"level":"info","ts":1677773649.5006013,"logger":"controller-runtime.metrics","msg":"Metrics server is starting to listen","addr":":8080"}
+I0302 16:14:11.551684       1 request.go:682] Waited for 2.046769343s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/ingress.operator.openshift.io/v1?timeout=32s
+{"level":"info","ts":1677773658.5059056,"logger":"setup","msg":"starting manager"}
+I0302 16:14:18.506005       1 leaderelection.go:248] attempting to acquire leader lease redhat-nvidia-gpu-addon/53822513.nvidia.com...
+{"level":"info","ts":1677773658.5060241,"msg":"Starting server","path":"/metrics","kind":"metrics","addr":"[::]:8080"}
+{"level":"info","ts":1677773658.5060246,"msg":"Starting server","kind":"health probe","addr":"[::]:8081"}
+I0302 16:15:25.761683       1 leaderelection.go:258] successfully acquired lease redhat-nvidia-gpu-addon/53822513.nvidia.com
+{"level":"info","ts":1677773725.761824,"msg":"Starting EventSource","controller":"clusterpolicy-controller","source":"kind source: *v1.ClusterPolicy"}
+{"level":"info","ts":1677773725.7618806,"msg":"Starting EventSource","controller":"clusterpolicy-controller","source":"kind source: *v1.Node"}
+{"level":"info","ts":1677773725.7618856,"msg":"Starting EventSource","controller":"clusterpolicy-controller","source":"kind source: *v1.DaemonSet"}
+{"level":"info","ts":1677773725.7618895,"msg":"Starting Controller","controller":"clusterpolicy-controller"}
+{"level":"info","ts":1677773725.7618768,"msg":"Starting EventSource","controller":"upgrade-controller","source":"kind source: *v1.ClusterPolicy"}
+{"level":"info","ts":1677773725.761918,"msg":"Starting EventSource","controller":"upgrade-controller","source":"kind source: *v1.Node"}
+{"level":"info","ts":1677773725.7619267,"msg":"Starting EventSource","controller":"upgrade-controller","source":"kind source: *v1.DaemonSet"}
+{"level":"info","ts":1677773725.7619321,"msg":"Starting Controller","controller":"upgrade-controller"}
+{"level":"info","ts":1677773725.862698,"msg":"Starting workers","controller":"clusterpolicy-controller","worker count":1}
+{"level":"info","ts":1677773725.862773,"logger":"controllers.ClusterPolicy","msg":"Reconciliate ClusterPolicies after node label update","nb":1}
+{"level":"info","ts":1677773725.8628998,"msg":"Starting workers","controller":"upgrade-controller","worker count":1}
+{"level":"info","ts":1677773725.862977,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.863012,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.8630264,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773725.863325,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.8633447,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.8633492,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773725.8681455,"logger":"controllers.ClusterPolicy","msg":"Kubernetes version detected","version":"v1.23.12+8a6bfe4"}
+{"level":"info","ts":1677773725.868685,"logger":"controllers.ClusterPolicy","msg":"Operator metrics initialized."}
+{"level":"info","ts":1677773725.8686993,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/pre-requisites"}
+{"level":"info","ts":1677773725.8750374,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-operator-metrics"}
+{"level":"info","ts":1677773725.8802042,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-driver"}
+{"level":"info","ts":1677773725.8876276,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-container-toolkit"}
+{"level":"info","ts":1677773725.8912294,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-operator-validation"}
+{"level":"info","ts":1677773725.8971953,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-device-plugin"}
+{"level":"info","ts":1677773725.9016483,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-dcgm"}
+{"level":"info","ts":1677773725.9053628,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-dcgm-exporter"}
+{"level":"info","ts":1677773725.9127707,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/gpu-feature-discovery"}
+{"level":"info","ts":1677773725.9174051,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-mig-manager"}
+{"level":"info","ts":1677773725.9240317,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-node-status-exporter"}
+{"level":"info","ts":1677773725.9316823,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-vgpu-manager"}
+{"level":"info","ts":1677773725.93917,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-vgpu-device-manager"}
+{"level":"info","ts":1677773725.9441183,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-sandbox-validation"}
+{"level":"info","ts":1677773725.9495802,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-vfio-manager"}
+{"level":"info","ts":1677773725.9548519,"logger":"controllers.ClusterPolicy","msg":"Getting assets from: ","path:":"/opt/gpu-operator/state-sandbox-device-plugin"}
+{"level":"info","ts":1677773725.9605296,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773725.9607568,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.96077,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9607751,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9607797,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9607837,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.960788,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9607916,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9607959,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773725.9608011,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773725.960808,"logger":"controllers.ClusterPolicy","msg":"Deleting node label","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","Label":"nvidia.com/gpu.deploy.sandbox-validator"}
+{"level":"info","ts":1677773725.9608119,"logger":"controllers.ClusterPolicy","msg":"Deleting node label","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","Label":"nvidia.com/gpu.deploy.sandbox-device-plugin"}
+{"level":"info","ts":1677773725.9608157,"logger":"controllers.ClusterPolicy","msg":"Deleting node label","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","Label":"nvidia.com/gpu.deploy.vgpu-device-manager"}
+{"level":"info","ts":1677773725.96082,"logger":"controllers.ClusterPolicy","msg":"Applying correct GPU state labels to the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773725.976413,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.976439,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773725.976445,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773725.976515,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773725.9767334,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:15:27.027810       1 request.go:682] Waited for 1.048115309s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/machine.openshift.io/v1beta1?timeout=32s
+{"level":"info","ts":1677773734.980739,"logger":"controllers.ClusterPolicy","msg":"Couldn't get the driver-toolkit imagestream","Error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773734.9807885,"logger":"controllers.ClusterPolicy","msg":"ocpHasDriverToolkitImageStream","err":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773734.9807968,"logger":"controllers.ClusterPolicy","msg":"Failed to initialize ClusterPolicy controller","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773734.9808378,"msg":"Reconciler error","controller":"clusterpolicy-controller","object":{"name":"ocp-gpu-addon"},"namespace":"","name":"ocp-gpu-addon","reconcileID":"1801cdd9-d631-40c0-9b36-254926b892fb","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773734.980983,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773734.9814217,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814343,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814403,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773734.9814482,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814522,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814568,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.981461,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814649,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814692,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773734.9814725,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773734.981627,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:15:37.027835       1 request.go:682] Waited for 1.949389302s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/autoscaling/v2beta1?timeout=32s
+{"level":"info","ts":1677773745.4788377,"logger":"controllers.ClusterPolicy","msg":"Couldn't get the driver-toolkit imagestream","Error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773745.4788687,"logger":"controllers.ClusterPolicy","msg":"ocpHasDriverToolkitImageStream","err":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773745.4788754,"logger":"controllers.ClusterPolicy","msg":"Failed to initialize ClusterPolicy controller","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773745.4788942,"msg":"Reconciler error","controller":"clusterpolicy-controller","object":{"name":"ocp-gpu-addon"},"namespace":"","name":"ocp-gpu-addon","reconcileID":"a40f3cd4-773f-4400-9b59-c82b68f221ae","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773745.4789526,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773745.4793239,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773745.4793758,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773745.4793828,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773745.4814095,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4814422,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773745.4814541,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4814606,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4814677,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4814675,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773745.4814942,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773745.4814992,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773745.4814742,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4815528,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4815812,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.4815876,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773745.481594,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773745.4817739,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:15:47.076680       1 request.go:682] Waited for 1.497437573s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/node.k8s.io/v1?timeout=32s
+{"level":"info","ts":1677773755.9787776,"logger":"controllers.ClusterPolicy","msg":"Couldn't get the driver-toolkit imagestream","Error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773755.9788108,"logger":"controllers.ClusterPolicy","msg":"ocpHasDriverToolkitImageStream","err":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773755.9788187,"logger":"controllers.ClusterPolicy","msg":"Failed to initialize ClusterPolicy controller","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773755.9788392,"msg":"Reconciler error","controller":"clusterpolicy-controller","object":{"name":"ocp-gpu-addon"},"namespace":"","name":"ocp-gpu-addon","reconcileID":"fc0fbe6a-4ae3-41a1-930f-667700b406ca","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773755.9789133,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773755.9789672,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773755.9789915,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773755.9789968,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773755.9791298,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.979144,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9791524,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773755.9791634,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9791698,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9791775,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9791858,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.979192,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9792004,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773755.9792063,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773755.979349,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:15:57.126614       1 request.go:682] Waited for 1.048339415s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/kubeflow.org/v1beta1?timeout=32s
+{"level":"info","ts":1677773766.478673,"logger":"controllers.ClusterPolicy","msg":"Couldn't get the driver-toolkit imagestream","Error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773766.4787185,"logger":"controllers.ClusterPolicy","msg":"ocpHasDriverToolkitImageStream","err":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773766.4787283,"logger":"controllers.ClusterPolicy","msg":"Failed to initialize ClusterPolicy controller","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773766.478749,"msg":"Reconciler error","controller":"clusterpolicy-controller","object":{"name":"ocp-gpu-addon"},"namespace":"","name":"ocp-gpu-addon","reconcileID":"2455d168-9a84-45a3-ba6d-9684046713e8","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773766.4788227,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773766.4788587,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677773766.4788651,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677773766.4788263,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773766.479086,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4790976,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791045,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773766.4791124,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791164,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791212,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791255,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.479129,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791331,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773766.4791365,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773766.4792652,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:16:07.627134       1 request.go:682] Waited for 1.048871012s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/batch/v1beta1?timeout=32s
+{"level":"info","ts":1677773776.9784598,"logger":"controllers.ClusterPolicy","msg":"Couldn't get the driver-toolkit imagestream","Error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773776.9784946,"logger":"controllers.ClusterPolicy","msg":"ocpHasDriverToolkitImageStream","err":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773776.9785032,"logger":"controllers.ClusterPolicy","msg":"Failed to initialize ClusterPolicy controller","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"error","ts":1677773776.978531,"msg":"Reconciler error","controller":"clusterpolicy-controller","object":{"name":"ocp-gpu-addon"},"namespace":"","name":"ocp-gpu-addon","reconcileID":"1dfcfde9-1653-41a7-8706-31e315722f1b","error":"no matches for kind \"ImageStream\" in version \"image.openshift.io/v1\""}
+{"level":"info","ts":1677773776.9786263,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773776.9788241,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9788368,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9788446,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.978855,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773776.9788678,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9788747,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.978882,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9788895,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9788961,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773776.9789035,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773776.979039,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+I0302 16:16:18.126799       1 request.go:682] Waited for 1.049014049s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/admissionregistration.k8s.io/v1?timeout=32s
+{"level":"info","ts":1677773787.5783646,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit requested","hasCompatibleNFD":true,"hasDriverToolkitImageStream":true}
+{"level":"info","ts":1677773787.578397,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit","enabled":true}
+{"level":"info","ts":1677773787.578401,"logger":"controllers.ClusterPolicy","msg":"GPU Operator not installed in the suggested namespace, skipping namespace monitoring verification","namespace":"redhat-nvidia-gpu-addon","suggested namespace":"nvidia-gpu-operator"}
+{"level":"info","ts":1677773787.6790516,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RuntimeClass":"nvidia"}
+{"level":"info","ts":1677773787.6872518,"logger":"KubeAPIWarningLogger","msg":"policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+"}
+{"level":"info","ts":1677773787.6872897,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"pre-requisites","status":"ready"}
+{"level":"info","ts":1677773787.839488,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773787.9050655,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.0117211,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.6180027,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.7235167,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-gpu-operator-metrics"}
+{"level":"info","ts":1677773788.7333832,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-metrics","status":"ready"}
+{"level":"info","ts":1677773788.7391958,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.7461312,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.7548673,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.765408,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773788.7730105,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+I0302 16:16:29.826819       1 request.go:682] Waited for 1.048079634s due to client-side throttling, not priority and fairness, request: GET:https://172.30.0.1:443/apis/metrics.k8s.io/v1beta1?timeout=32s
+{"level":"info","ts":1677773798.0795271,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-driver","Namespace":"default"}
+{"level":"info","ts":1677773798.29266,"logger":"controllers.ClusterPolicy","msg":"Driver DaemonSet active, keep it.","Name":"nvidia-driver-daemonset-410.84.202302080019-0","Status.DesiredNumberScheduled":1}
+{"level":"info","ts":1677773798.3939457,"logger":"controllers.ClusterPolicy","msg":"4.18.0-305.76.1.el8_4.x86_64","Request.Namespace":"default","Request.Name":"Node"}
+{"level":"info","ts":1677773798.3967748,"logger":"controllers.ClusterPolicy","msg":"DriverToolkit","image":"quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734"}
+{"level":"info","ts":1677773798.397443,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-driver-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-driver-daemonset-410.84.202302080019-0"}
+{"level":"info","ts":1677773798.3975062,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-driver","status":"ready"}
+{"level":"info","ts":1677773798.4237144,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4307368,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4397912,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4432049,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-container-toolkit-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-container-toolkit-daemonset"}
+{"level":"info","ts":1677773798.4432635,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-container-toolkit","status":"ready"}
+{"level":"info","ts":1677773798.4476163,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.454612,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4639812,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4734797,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4824595,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.4854553,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-operator-validator","Namespace":"default"}
+{"level":"info","ts":1677773798.5003362,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-operator-validator"}
+{"level":"info","ts":1677773798.5004058,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-validation","status":"ready"}
+{"level":"info","ts":1677773798.5200357,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.5311644,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.5500782,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.568405,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.5965054,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6093426,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-device-plugin-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-device-plugin-daemonset"}
+{"level":"info","ts":1677773798.6094108,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-device-plugin","status":"ready"}
+{"level":"info","ts":1677773798.623208,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6332567,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6438808,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6471808,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm","Namespace":"default"}
+{"level":"info","ts":1677773798.656138,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm"}
+{"level":"info","ts":1677773798.6561944,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm","status":"ready"}
+{"level":"info","ts":1677773798.6662478,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.672364,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6821408,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.6918213,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.701238,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.704202,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7075336,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7182045,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7219958,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm-exporter","Namespace":"default"}
+{"level":"info","ts":1677773798.7302341,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm-exporter"}
+{"level":"info","ts":1677773798.7303038,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm-exporter","status":"ready"}
+{"level":"info","ts":1677773798.7349212,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7402334,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.748232,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7584517,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.765871,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.7686384,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-gpu-feature-discovery","Namespace":"default"}
+{"level":"info","ts":1677773798.7758443,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon","name":"gpu-feature-discovery"}
+{"level":"info","ts":1677773798.7759125,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"gpu-feature-discovery","status":"ready"}
+{"level":"info","ts":1677773798.7807143,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.785361,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.793438,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8022175,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8091097,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8186278,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-mig-parted-config","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8280556,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-gpu-clients","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8319376,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-mig-manager","Namespace":"default"}
+{"level":"info","ts":1677773798.8394399,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-mig-manager"}
+{"level":"info","ts":1677773798.8395078,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-mig-manager","status":"ready"}
+{"level":"info","ts":1677773798.8437018,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8480108,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8573189,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8665137,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.87386,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8765266,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-node-status-exporter","Namespace":"default"}
+{"level":"info","ts":1677773798.8832521,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8865557,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.8909037,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-node-status-exporter"}
+{"level":"info","ts":1677773798.8909752,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-node-status-exporter-alerts"}
+{"level":"info","ts":1677773798.8974652,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-node-status-exporter","status":"ready"}
+{"level":"info","ts":1677773798.9099123,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-manager","status":"disabled"}
+{"level":"info","ts":1677773798.9211593,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-device-manager","status":"disabled"}
+{"level":"info","ts":1677773798.9329803,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-validation","status":"disabled"}
+{"level":"info","ts":1677773798.946398,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vfio-manager","status":"disabled"}
+{"level":"info","ts":1677773798.9586198,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-device-plugin","status":"disabled"}
+{"level":"info","ts":1677773798.9586613,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy is ready."}
+{"level":"info","ts":1677773798.9587069,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677773798.9588988,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589097,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677773798.958918,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589221,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.958927,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589314,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.958935,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589396,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589431,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677773798.9589477,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677773798.9590774,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+{"level":"info","ts":1677773798.9590945,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit requested","hasCompatibleNFD":true,"hasDriverToolkitImageStream":true}
+{"level":"info","ts":1677773798.9591014,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit","enabled":true}
+{"level":"info","ts":1677773798.9591048,"logger":"controllers.ClusterPolicy","msg":"GPU Operator not installed in the suggested namespace, skipping namespace monitoring verification","namespace":"redhat-nvidia-gpu-addon","suggested namespace":"nvidia-gpu-operator"}
+{"level":"info","ts":1677773798.959121,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RuntimeClass":"nvidia"}
+{"level":"info","ts":1677773798.9639916,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"pre-requisites","status":"ready"}
+{"level":"info","ts":1677773798.969578,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.9802947,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.9841027,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.9872792,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773798.99144,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-gpu-operator-metrics"}
+{"level":"info","ts":1677773799.000673,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-metrics","status":"ready"}
+{"level":"info","ts":1677773799.0049632,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0096996,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0174468,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.026758,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0338757,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.036652,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-driver","Namespace":"default"}
+{"level":"info","ts":1677773799.0439095,"logger":"controllers.ClusterPolicy","msg":"Driver DaemonSet active, keep it.","Name":"nvidia-driver-daemonset-410.84.202302080019-0","Status.DesiredNumberScheduled":1}
+{"level":"info","ts":1677773799.0440927,"logger":"controllers.ClusterPolicy","msg":"4.18.0-305.76.1.el8_4.x86_64","Request.Namespace":"default","Request.Name":"Node"}
+{"level":"info","ts":1677773799.0464199,"logger":"controllers.ClusterPolicy","msg":"DriverToolkit","image":"quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734"}
+{"level":"info","ts":1677773799.0470612,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-driver-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-driver-daemonset-410.84.202302080019-0"}
+{"level":"info","ts":1677773799.0471108,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-driver","status":"ready"}
+{"level":"info","ts":1677773799.052001,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0563097,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.065172,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.068497,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-container-toolkit-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-container-toolkit-daemonset"}
+{"level":"info","ts":1677773799.0685482,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-container-toolkit","status":"ready"}
+{"level":"info","ts":1677773799.0733693,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0782952,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0853977,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.0941107,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.101302,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1040509,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-operator-validator","Namespace":"default"}
+{"level":"info","ts":1677773799.1180236,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-operator-validator"}
+{"level":"info","ts":1677773799.118098,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-validation","status":"ready"}
+{"level":"info","ts":1677773799.1299822,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1351538,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1427302,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1514843,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1586986,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.161323,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-device-plugin-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-device-plugin-daemonset"}
+{"level":"info","ts":1677773799.1613867,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-device-plugin","status":"ready"}
+{"level":"info","ts":1677773799.1656153,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.170465,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.1803718,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.183164,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm","Namespace":"default"}
+{"level":"info","ts":1677773799.1916952,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm"}
+{"level":"info","ts":1677773799.1917448,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm","status":"ready"}
+{"level":"info","ts":1677773799.1965559,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2014718,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2116847,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2274127,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.237077,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2399786,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2431216,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2529035,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2566814,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm-exporter","Namespace":"default"}
+{"level":"info","ts":1677773799.264322,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm-exporter"}
+{"level":"info","ts":1677773799.2643895,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm-exporter","status":"ready"}
+{"level":"info","ts":1677773799.2692933,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2736747,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2824225,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2916436,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.2988968,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3017342,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-gpu-feature-discovery","Namespace":"default"}
+{"level":"info","ts":1677773799.3097103,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon","name":"gpu-feature-discovery"}
+{"level":"info","ts":1677773799.3097618,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"gpu-feature-discovery","status":"ready"}
+{"level":"info","ts":1677773799.3144755,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.31894,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3263237,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3345373,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.341597,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3502467,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-mig-parted-config","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3600495,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-gpu-clients","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3637424,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-mig-manager","Namespace":"default"}
+{"level":"info","ts":1677773799.370355,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-mig-manager"}
+{"level":"info","ts":1677773799.3704188,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-mig-manager","status":"ready"}
+{"level":"info","ts":1677773799.3742013,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.378725,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3878365,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.3976476,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.4053779,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.4079685,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-node-status-exporter","Namespace":"default"}
+{"level":"info","ts":1677773799.4145746,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.4181356,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677773799.4225073,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-node-status-exporter"}
+{"level":"info","ts":1677773799.4226153,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-node-status-exporter-alerts"}
+{"level":"info","ts":1677773799.4294288,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-node-status-exporter","status":"ready"}
+{"level":"info","ts":1677773799.4419863,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-manager","status":"disabled"}
+{"level":"info","ts":1677773799.4529078,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-device-manager","status":"disabled"}
+{"level":"info","ts":1677773799.4658072,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-validation","status":"disabled"}
+{"level":"info","ts":1677773799.4801903,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vfio-manager","status":"disabled"}
+{"level":"info","ts":1677773799.4922135,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-device-plugin","status":"disabled"}
+{"level":"info","ts":1677773799.492258,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy is ready."}
+{"level":"info","ts":1677774508.0823293,"logger":"controllers.Upgrade","msg":"Reconciling Upgrade","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677774508.082365,"logger":"controllers.Upgrade","msg":"Advanced driver upgrade policy is disabled, cleaning up upgrade state and skipping reconciliation","upgrade":"/ocp-gpu-addon"}
+{"level":"info","ts":1677774508.0823693,"logger":"controllers.Upgrade","msg":"Resetting node upgrade labels from all nodes"}
+{"level":"info","ts":1677774508.0823634,"logger":"controllers.ClusterPolicy","msg":"Sandbox workloads","Enabled":false,"DefaultWorkload":"container"}
+{"level":"info","ts":1677774508.0825982,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-229-111.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826144,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-231-170.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.082619,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-246-19.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826237,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-255.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.082629,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"ip-10-0-193-255.us-east-2.compute.internal"}
+{"level":"info","ts":1677774508.0826366,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-193-90.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826404,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-197-168.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826447,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-209-134.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826488,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"ip-10-0-213-93.us-east-2.compute.internal","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1677774508.0826526,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1677774508.0827858,"logger":"controllers.ClusterPolicy","msg":"Using container runtime: crio"}
+{"level":"info","ts":1677774508.0828059,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit requested","hasCompatibleNFD":true,"hasDriverToolkitImageStream":true}
+{"level":"info","ts":1677774508.0828097,"logger":"controllers.ClusterPolicy","msg":"OpenShift Driver Toolkit","enabled":true}
+{"level":"info","ts":1677774508.0828128,"logger":"controllers.ClusterPolicy","msg":"GPU Operator not installed in the suggested namespace, skipping namespace monitoring verification","namespace":"redhat-nvidia-gpu-addon","suggested namespace":"nvidia-gpu-operator"}
+{"level":"info","ts":1677774508.0828292,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RuntimeClass":"nvidia"}
+{"level":"info","ts":1677774508.1079824,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"pre-requisites","status":"ready"}
+{"level":"info","ts":1677774508.1608107,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774509.8983223,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774509.9213786,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774509.946132,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"gpu-operator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774509.9767606,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-gpu-operator-metrics"}
+{"level":"info","ts":1677774510.17206,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-metrics","status":"ready"}
+{"level":"info","ts":1677774510.2118113,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.2364821,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.263579,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.295921,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.3152869,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-driver","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.3214297,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-driver","Namespace":"default"}
+{"level":"info","ts":1677774510.358414,"logger":"controllers.ClusterPolicy","msg":"Driver DaemonSet active, keep it.","Name":"nvidia-driver-daemonset-410.84.202302080019-0","Status.DesiredNumberScheduled":1}
+{"level":"info","ts":1677774510.3586488,"logger":"controllers.ClusterPolicy","msg":"4.18.0-305.76.1.el8_4.x86_64","Request.Namespace":"default","Request.Name":"Node"}
+{"level":"info","ts":1677774510.3636217,"logger":"controllers.ClusterPolicy","msg":"DriverToolkit","image":"quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6f9c224853c0b4ae241b4d9bebd84ed2dff9b92fdbd17b79bb750b5a13ede734"}
+{"level":"info","ts":1677774510.364209,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-driver-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-driver-daemonset-410.84.202302080019-0"}
+{"level":"info","ts":1677774510.3642638,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-driver","status":"ready"}
+{"level":"info","ts":1677774510.3772194,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.3995364,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.4398735,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-container-toolkit","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.4449205,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-container-toolkit-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-container-toolkit-daemonset"}
+{"level":"info","ts":1677774510.4449763,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-container-toolkit","status":"ready"}
+{"level":"info","ts":1677774510.4606457,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.479087,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.5081298,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.5329547,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.5500104,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.5640254,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-operator-validator","Namespace":"default"}
+{"level":"info","ts":1677774510.5772505,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-operator-validator","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-operator-validator"}
+{"level":"info","ts":1677774510.577337,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-operator-validation","status":"ready"}
+{"level":"info","ts":1677774510.5855727,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.5935345,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.6047914,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.6265204,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.6589239,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-device-plugin","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.662854,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-device-plugin-daemonset","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-device-plugin-daemonset"}
+{"level":"info","ts":1677774510.662902,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-device-plugin","status":"ready"}
+{"level":"info","ts":1677774510.669832,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.6790333,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.697919,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.7041218,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm","Namespace":"default"}
+{"level":"info","ts":1677774510.7171845,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm"}
+{"level":"info","ts":1677774510.7172382,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm","status":"ready"}
+{"level":"info","ts":1677774510.7325163,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.7398837,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.7634823,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.7810004,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.805759,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"prometheus-k8s","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.811132,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.81662,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.8405092,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.8517828,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-dcgm-exporter","Namespace":"default"}
+{"level":"info","ts":1677774510.864483,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-dcgm-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-dcgm-exporter"}
+{"level":"info","ts":1677774510.864537,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-dcgm-exporter","status":"ready"}
+{"level":"info","ts":1677774510.885889,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.892443,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.9093301,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.932902,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.9547265,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774510.9675567,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-gpu-feature-discovery","Namespace":"default"}
+{"level":"info","ts":1677774510.9932108,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"gpu-feature-discovery","Namespace":"redhat-nvidia-gpu-addon","name":"gpu-feature-discovery"}
+{"level":"info","ts":1677774510.993261,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"gpu-feature-discovery","status":"ready"}
+{"level":"info","ts":1677774511.0107672,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.0213628,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.0377605,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.0651536,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.0854409,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.1017728,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-mig-parted-config","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.2145536,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ConfigMap":"default-gpu-clients","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.218777,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-mig-manager","Namespace":"default"}
+{"level":"info","ts":1677774511.2316108,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-mig-manager","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-mig-manager"}
+{"level":"info","ts":1677774511.2316844,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-mig-manager","status":"ready"}
+{"level":"info","ts":1677774511.2435093,"logger":"controllers.ClusterPolicy","msg":"Found Resource, skipping update","ServiceAccount":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.2564583,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Role":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.2822435,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","RoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.3077278,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRole":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.3385382,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ClusterRoleBinding":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.344546,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","SecurityContextConstraints":"nvidia-node-status-exporter","Namespace":"default"}
+{"level":"info","ts":1677774511.3742404,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","Service":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.3785093,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","ServiceMonitor":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon"}
+{"level":"info","ts":1677774511.3949523,"logger":"controllers.ClusterPolicy","msg":"DaemonSet identical, skipping update","DaemonSet":"nvidia-node-status-exporter","Namespace":"redhat-nvidia-gpu-addon","name":"nvidia-node-status-exporter"}
+{"level":"info","ts":1677774511.395022,"logger":"controllers.ClusterPolicy","msg":"Found Resource, updating...","PrometheusRule":"nvidia-node-status-exporter-alerts"}
+{"level":"info","ts":1677774511.4088337,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-node-status-exporter","status":"ready"}
+{"level":"info","ts":1677774511.4704797,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-manager","status":"disabled"}
+{"level":"info","ts":1677774511.5260556,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vgpu-device-manager","status":"disabled"}
+{"level":"info","ts":1677774511.575181,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-validation","status":"disabled"}
+{"level":"info","ts":1677774511.6328697,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-vfio-manager","status":"disabled"}
+{"level":"info","ts":1677774511.773546,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy step completed","state:":"state-sandbox-device-plugin","status":"disabled"}
+{"level":"info","ts":1677774511.773632,"logger":"controllers.ClusterPolicy","msg":"ClusterPolicy is ready."}

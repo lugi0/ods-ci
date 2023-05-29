@@ -147,3 +147,8 @@ Get OpenShift Prometheus Service Account Token
     [Documentation]    Returns a token for a service account to be used with Prometheus
     ${token} =    Run    oc create token prometheus-k8s -n openshift-monitoring
     RETURN    ${token}
+
+Get OpenShift Prometheus Service Account Token
+    [Documentation]    Returns a token for a service account to be used with Prometheus
+    ${token} =    Run    oc serviceaccounts new-token prometheus-k8s -n openshift-monitoring
+    RETURN    ${token}
